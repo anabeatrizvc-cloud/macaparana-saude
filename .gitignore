@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+data/*.db*
+data/*.log
+.venv/
+entrega/*.zip
+.tools/
+frontend/node_modules/
+data/

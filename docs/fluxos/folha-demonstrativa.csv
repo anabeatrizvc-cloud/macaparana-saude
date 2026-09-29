@@ -1,0 +1,7 @@
+﻿ID;Paciente fictício;Atendimento;Beneficiário;Valor demonstrativo (R$);Situação;Referência contábil;Pagamento
+4;Francisco Silva · fictício;2026-09-28;Paciente;35,00;Calculado;;
+3;José Antônio · fictício;2026-09-28;Paciente;35,00;Calculado;;
+1;Maria de Lourdes · fictício;2026-09-28;Paciente;35,00;Pago;DEMO-2026;2026-09-29
+2;Maria de Lourdes · fictício;2026-09-28;Acompanhante;25,00;Contabilidade;DEMO-2026;
+5;Paciente do fluxo React;2026-09-29;Paciente;35,00;Pago;DEMO-REACT-2026;2026-09-29
+6;Paciente do fluxo React;2026-09-29;Acompanhante;25,00;Calculado;;

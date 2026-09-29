@@ -1,0 +1,9 @@
+DECLARAÇÃO DEMONSTRATIVA DO PACIENTE — SEM VALIDADE
+
+Paciente: personagem fictício da apresentação.
+Data: preencher a data do cenário demonstrado.
+Permanência: atendimento ambulatorial no mesmo dia, para fins de simulação.
+Unidade: referência fictícia.
+
+Arquivo destinado exclusivamente ao teste da conferência mensal.
+Não constitui prova de atendimento real nem documento para benefício.

@@ -1,0 +1,9 @@
+{
+  "date": "2026-09-29",
+  "result": "PASS",
+  "flow": "cadastro → solicitação → laudo → autorização → agendamento → viagem → confirmação → embarque → encerramento → declaração → comprovação → cálculo → aprovação → contabilidade → pagamento → recarregamento",
+  "request_id": 9,
+  "occurrence_id": 14,
+  "javascript_errors": [],
+  "database": "temporário isolado"
+}

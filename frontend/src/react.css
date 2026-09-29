@@ -1,0 +1,25 @@
+.form-fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+.audit-json {
+  white-space: pre-wrap;
+  font-size: 11px;
+  background: #f5f7f0;
+  padding: 15px;
+  border-radius: 8px;
+  overflow-wrap: anywhere;
+}
+.form-fieldset:disabled {
+  opacity: 0.75;
+}
+.modal-body .form-grid + .info {
+  margin-top: 20px;
+}
+.check input[type="month"],
+.check input[type="date"] {
+  width: 160px;
+  height: auto;
+}

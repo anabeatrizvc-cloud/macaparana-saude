@@ -1,0 +1,43 @@
+erDiagram
+    PATIENTS ||--o{ REQUESTS : solicita
+    FACILITIES ||--o{ REQUESTS : referencia
+    REQUESTS ||--o{ OCCURRENCES : agenda
+    REQUESTS ||--o{ DOCUMENTS : laudos
+    TRIPS o|--o{ OCCURRENCES : aloca
+    VEHICLES ||--o{ TRIPS : transporta
+    DRIVERS ||--o{ TRIPS : conduz
+    OCCURRENCES ||--o{ DOCUMENTS : comprovantes
+    OCCURRENCES ||--o{ BENEFITS : origina
+    RULES ||--o{ BENEFITS : parametriza
+    USERS ||--o{ DOCUMENTS : anexa
+    USERS ||--o{ AUDIT : registra
+    PATIENTS {
+      int id PK
+      text name
+      text boarding
+      text companion
+    }
+    REQUESTS {
+      int id PK
+      int patient_id FK
+      int facility_id FK
+      text kind
+      text status
+    }
+    OCCURRENCES {
+      int id PK
+      int request_id FK
+      int trip_id FK
+      date date
+      text boarding
+      bool attendance
+      bool companion_proof
+    }
+    BENEFITS {
+      int id PK
+      int occurrence_id FK
+      int rule_id FK
+      text beneficiary
+      int amount_cents
+      text status
+    }
