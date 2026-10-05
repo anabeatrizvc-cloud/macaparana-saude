@@ -314,7 +314,7 @@ function Fields({ type, id }) {
         </div>
         <Info>
           Confira se a rota atende a unidade de referência. O lugar fica
-          reservado em todos os trechos de ida e volta.
+            reservado em todos os trechos desta rota. Para reservar parte do percurso, use Rotas e trechos.
         </Info>
       </>
     );

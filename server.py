@@ -13,7 +13,7 @@ from contextlib import closing
 from http.cookies import SimpleCookie
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import urlparse, parse_qs
 
 from app.domain import connect, execute, get, log, state, RuleError, require
 from app.seed import initialize, password_hash
@@ -75,8 +75,22 @@ class Handler(BaseHTTPRequestHandler):
                 try:
                     if path == '/api/state':
                         return self.send(200,state(db,user))
+                    if path == '/api/production/export':
+                        require(user['role'] in ('admin','faturamento','auditor'), 'Perfil sem acesso à produção.')
+                        month = parse_qs(urlparse(self.path).query).get('month',[''])[0]
+                        from app.domain import day
+                        day(month+'-01')
+                        rows = db.execute('''SELECT pr.id,o.id,r.id,p.name,p.cns,f.cnes,r.kind,r.specialty,o.date,o.trip_id,o.attendance,o.permanence,o.companion_proof,pr.procedure_code,pr.quantity,pr.destination,pr.status,pr.protocol,pr.note FROM production pr JOIN occurrences o ON o.id=pr.occurrence_id JOIN requests r ON r.id=o.request_id JOIN patients p ON p.id=r.patient_id JOIN facilities f ON f.id=r.facility_id WHERE substr(o.date,1,7)=? ORDER BY o.date,pr.id''',(month,)).fetchall()
+                        stream = io.StringIO()
+                        writer = csv.writer(stream,delimiter=';')
+                        writer.writerow(['Preparacao_ID','Ocorrencia_ID','Solicitacao_ID','Paciente','CNS','CNES_referencia','Modalidade','Especialidade','Data','Viagem_ID','Atendimento_comprovado','Permanencia','Acompanhante_comprovado','Procedimento_informado','Quantidade','Destino_revisao','Situacao','Protocolo_interno','Observacoes'])
+                        for row in rows:
+                            writer.writerow(["'"+str(v) if str(v).lstrip().startswith(('=','+','-','@')) else v for v in row])
+                        log(db,user,'production.export','production',after={'month':month,'rows':len(rows),'format':'preparacao interna, nao oficial'})
+                        db.commit()
+                        return self.send(200,'\ufeff'+stream.getvalue(),'text/csv; charset=utf-8',{'Content-Disposition':'attachment; filename="preparacao-producao.csv"'})
                     if path.startswith('/api/documents/'):
-                        require(user['role'] in ('admin','regulacao','financeiro','auditor'), 'Seu perfil não pode acessar documentos.')
+                        require(user['role'] in ('admin','regulacao','financeiro','faturamento','auditor'), 'Seu perfil não pode acessar documentos.')
                         document = get(db,'documents',int(path.rsplit('/',1)[1]))
                         log(db,user,'document.download','documents',document['id'])
                         db.commit()

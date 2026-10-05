@@ -23,3 +23,10 @@
   width: 160px;
   height: auto;
 }
+
+.extension-form { padding: 18px 0; }
+.extension-form fieldset { border: 0; padding: 0; min-width: 0; }
+.extension-form .btn { margin-top: 16px; }
+.card > h2, .card > p, .card > .extension-form, .card > a { margin: 18px; }
+.sidebar .nav { overflow-y: auto; }
+.field textarea { width: 100%; min-height: 90px; }

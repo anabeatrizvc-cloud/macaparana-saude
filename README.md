@@ -123,3 +123,10 @@ docs/                      Documentos, diagramas, telas e evidências
 exemplos/                  Anexos fictícios
 data/                      Banco persistente local
 ```
+# Revisão do escopo — 04/10/2026
+
+Complementos: capacidade por trecho com paradas ordenadas, confirmação assistida com canal, perfil `faturamento`, preparação/encaminhamento de produção e CSV interno, indicadores de custo/consumo, medições do piloto com fonte, registros de capacitação/suporte e `python scripts/backup.py`.
+
+Consulte [verificação completa](docs/verificacao-escopo.md), [operação e piloto](docs/operacao.md) e [novas evidências](docs/revisao.html). A senha do novo perfil é `demo123`, como os demais perfis acadêmicos. A migração preserva o banco existente.
+
+Integrações oficiais, leiautes homologados, implantação com dados reais e execução do piloto municipal dependem da prefeitura. O CSV de produção é preparação interna e não representa transmissão ou aceite oficial.

@@ -50,15 +50,15 @@ Os dados são persistidos em SQLite, incluindo o conteúdo dos anexos. A interfa
 | --- | --- | --- |
 | Acompanhante | Um acompanhante atual por paciente e autorização por solicitação | Cadastro independente, múltiplos vínculos e histórico por evento |
 | Tratamento | Solicitação autorizada agrupa ocorrências únicas por data | Entidade tratamento independente, suspensões e revisão de séries |
-| Trechos | Reserva de capacidade durante toda a ida e volta | Assentos liberados e ocupados por trecho, ida e retorno independentes |
-| Viagens | Saída e retorno no mesmo dia; um destino principal e rota textual | Viagens de vários dias, múltiplas escalas estruturadas e otimização |
+| Trechos | Paradas ordenadas, reserva por intervalo e capacidade por segmento | Viagens distintas para retornos em outros dias |
+| Viagens | Saída e retorno no mesmo dia; um destino principal e paradas ordenadas | Viagens de vários dias e otimização automática |
 | Permanência | Texto relacionado ao atendimento | Períodos estruturados, pernoites e validação de regras específicas |
 | Benefícios | Valor fixo ilustrativo por ocorrência e beneficiário | Tipos, vigência jurídica, elegibilidade, distância, diárias e valores homologados |
 | Regras | Última versão no momento do cálculo; valor preservado após gerar | Seleção por vigência aplicável à data e processo de aprovação normativa |
 | Cadastros | Criação e consulta; sem exclusão nem edição geral | Retificações com justificativa, inativação, prevenção de duplicidades avançada |
 | Comprovação | Vínculo a uma ocorrência que exige embarque na viagem | Fluxos de transporte próprio, permanência e comprovação independente da frota |
 | Financeiro | Registro de etapas por benefício e CSV consolidado | Lotes formais, segregação de aprovação, integração contábil e conciliação bancária |
-| Contas | Seis usuários demonstrativos pré-cadastrados | Gestão de usuários, redefinição de senha, MFA e vínculo de vários motoristas |
+| Contas | Sete usuários demonstrativos pré-cadastrados, incluindo faturamento | Gestão de usuários, redefinição de senha, MFA e vínculo de vários motoristas |
 
 ## 2.3 Fora desta versão
 
@@ -80,7 +80,7 @@ Legenda: **I** = implementado no recorte; **P** = parcial/simplificado; **F** = 
 | RF06 | Gerar recorrências semanais e datas avulsas | I — calendário; restrição única por solicitação/data |
 | RF07 | Manter continuidade entre competências | I — uma autorização pode gerar ocorrências em vários meses |
 | RF08 | Planejar veículos, motoristas, capacidade e acessibilidade | I — Viagens; testes de conflito, capacidade e CNH |
-| RF09 | Alocar por data e trecho | P — data e rota de ida/volta; reserva integral, sem liberação intermediária |
+| RF09 | Alocar por data e trecho | I — paradas ordenadas e capacidade por intervalo de alocação |
 | RF10 | Registrar alterações de alocação com justificativa | I — retirada preserva agenda e gera auditoria; reatribuição disponível |
 | RF11 | Registrar km reais, consumo e custos | I — encerramento da viagem; custos informados manualmente |
 | RF12 | Confirmar antecipadamente com alternativa assistida | P — confirmação assistida; sem envio de mensagem |
@@ -90,11 +90,11 @@ Legenda: **I** = implementado no recorte; **P** = parcial/simplificado; **F** = 
 | RF16 | Conciliar viagem, atendimento e permanência | P — vínculo e texto de permanência, sem conciliação automática externa |
 | RF17 | Calcular ajuda de custo e preservar regra aplicada | P — cálculo ilustrativo por ocorrência; versão vinculada ao benefício |
 | RF18 | Encaminhar folha e acompanhar pagamento | P — etapas e CSV; nenhum envio ou pagamento automático |
-| RF19 | Preparar produção para sistemas oficiais | F — falta definição e homologação de leiautes |
+| RF19 | Preparar produção para sistemas oficiais | P — preparação interna, revisão, protocolo e CSV; leiaute oficial depende de homologação |
 | RF20 | Relacionar indicadores a eventos de origem | P — indicadores básicos, telas de origem e auditoria; BI avançado futuro |
 | RF21 | Integrar e-SUS, CNES, mapas e WhatsApp quando autorizado | F — pontos de evolução documentados; nenhuma API presumida |
-| RF22 | Disponibilizar capacitação e suporte | P — manual e roteiro; operação assistida municipal futura |
-| RF23 | Executar e medir piloto municipal | F — plano proposto; nenhum resultado real reivindicado |
+| RF22 | Disponibilizar capacitação e suporte | P — manual, roteiro e registros de capacitação/chamado; equipe municipal a designar |
+| RF23 | Executar e medir piloto municipal | P — plano e ferramenta de medição; execução real depende da prefeitura |
 
 ## 3.1 Requisitos não funcionais
 
@@ -440,3 +440,7 @@ Não se presume que e-SUS APS permita leitura dos dados desejados nem que CNES, 
 - [Vite — Build para distribuição](https://vite.dev/guide/build). Referência da compilação dos arquivos de frontend servidos pelo Python.
 
 Referências consultadas em 29 de setembro de 2026. A documentação descreve a versão acadêmica 1.1 (React + Python) e deve ser revista quando o sistema evoluir.
+
+# 18. Complemento da revisão de escopo — 04/10/2026
+
+A revisão acrescenta rotas por trecho, perfil de faturamento, preparação de produção, indicadores, registro de medições do piloto, capacitação, suporte e backup consistente. Consulte [Verificação completa do escopo](verificacao-escopo.html) e [Manual de operação](operacao.html). As limitações históricas desta documentação relativas à reserva integral e ausência de preparação interna são substituídas pelo complemento. Integrações oficiais, implantação e piloto real continuam condicionados à prefeitura.

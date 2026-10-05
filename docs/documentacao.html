@@ -55,6 +55,7 @@
 </li>
 <li><a href="#13-evolucao-e-cronograma-proposto">13. Evolução e cronograma proposto</a></li>
 <li><a href="#14-referencias-e-origem-dos-requisitos">14. Referências e origem dos requisitos</a></li>
+<li><a href="#18-complemento-da-revisao-de-escopo-04102026">18. Complemento da revisão de escopo — 04/10/2026</a></li>
 </ul>
 </div>
 <h1 id="1-apresentacao">1. Apresentação</h1>
@@ -140,13 +141,13 @@
 </tr>
 <tr>
 <td>Trechos</td>
-<td>Reserva de capacidade durante toda a ida e volta</td>
-<td>Assentos liberados e ocupados por trecho, ida e retorno independentes</td>
+<td>Paradas ordenadas, reserva por intervalo e capacidade por segmento</td>
+<td>Viagens distintas para retornos em outros dias</td>
 </tr>
 <tr>
 <td>Viagens</td>
-<td>Saída e retorno no mesmo dia; um destino principal e rota textual</td>
-<td>Viagens de vários dias, múltiplas escalas estruturadas e otimização</td>
+<td>Saída e retorno no mesmo dia; um destino principal e paradas ordenadas</td>
+<td>Viagens de vários dias e otimização automática</td>
 </tr>
 <tr>
 <td>Permanência</td>
@@ -180,7 +181,7 @@
 </tr>
 <tr>
 <td>Contas</td>
-<td>Seis usuários demonstrativos pré-cadastrados</td>
+<td>Sete usuários demonstrativos pré-cadastrados, incluindo faturamento</td>
 <td>Gestão de usuários, redefinição de senha, MFA e vínculo de vários motoristas</td>
 </tr>
 </tbody>
@@ -242,7 +243,7 @@
 <tr>
 <td>RF09</td>
 <td>Alocar por data e trecho</td>
-<td>P — data e rota de ida/volta; reserva integral, sem liberação intermediária</td>
+<td>I — paradas ordenadas e capacidade por intervalo de alocação</td>
 </tr>
 <tr>
 <td>RF10</td>
@@ -292,7 +293,7 @@
 <tr>
 <td>RF19</td>
 <td>Preparar produção para sistemas oficiais</td>
-<td>F — falta definição e homologação de leiautes</td>
+<td>P — preparação interna, revisão, protocolo e CSV; leiaute oficial depende de homologação</td>
 </tr>
 <tr>
 <td>RF20</td>
@@ -307,12 +308,12 @@
 <tr>
 <td>RF22</td>
 <td>Disponibilizar capacitação e suporte</td>
-<td>P — manual e roteiro; operação assistida municipal futura</td>
+<td>P — manual, roteiro e registros de capacitação/chamado; equipe municipal a designar</td>
 </tr>
 <tr>
 <td>RF23</td>
 <td>Executar e medir piloto municipal</td>
-<td>F — plano proposto; nenhum resultado real reivindicado</td>
+<td>P — plano e ferramenta de medição; execução real depende da prefeitura</td>
 </tr>
 </tbody>
 </table>
@@ -1115,4 +1116,6 @@
 <li><a href="https://react.dev/learn/add-react-to-an-existing-project">React — Adicionar React a um projeto existente</a>. Referência para a interface por componentes e montagem da raiz React.</li>
 <li><a href="https://vite.dev/guide/build">Vite — Build para distribuição</a>. Referência da compilação dos arquivos de frontend servidos pelo Python.</li>
 </ul>
-<p>Referências consultadas em 29 de setembro de 2026. A documentação descreve a versão acadêmica 1.1 (React + Python) e deve ser revista quando o sistema evoluir.</p><footer class="doc-footer">Macaparana Saúde · Entrega acadêmica · Setembro de 2026</footer></main></body></html>
+<p>Referências consultadas em 29 de setembro de 2026. A documentação descreve a versão acadêmica 1.1 (React + Python) e deve ser revista quando o sistema evoluir.</p>
+<h1 id="18-complemento-da-revisao-de-escopo-04102026">18. Complemento da revisão de escopo — 04/10/2026</h1>
+<p>A revisão acrescenta rotas por trecho, perfil de faturamento, preparação de produção, indicadores, registro de medições do piloto, capacitação, suporte e backup consistente. Consulte <a href="verificacao-escopo.html">Verificação completa do escopo</a> e <a href="operacao.html">Manual de operação</a>. As limitações históricas desta documentação relativas à reserva integral e ausência de preparação interna são substituídas pelo complemento. Integrações oficiais, implantação e piloto real continuam condicionados à prefeitura.</p><footer class="doc-footer">Macaparana Saúde · Entrega acadêmica · Setembro de 2026</footer></main></body></html>

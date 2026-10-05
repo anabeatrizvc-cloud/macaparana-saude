@@ -86,7 +86,7 @@ Para uma demonstração mais longa, execute esta sequência. Ela foi usada como 
 
 **Como sabem que funciona?** A entrega inclui testes automatizados de domínio e HTTP, um fluxo completo pelos formulários no Chrome e capturas das telas. Os relatórios acompanham o projeto.
 
-**O que falta para atender integralmente o enunciado?** Entre outros pontos, acompanhante independente, trechos estruturados, regras completas de permanência/benefício, integrações oficiais, produção homologada e medição de piloto real.
+**O que falta para atender integralmente em produção municipal?** Regras de permanência/benefício homologadas, integrações oficiais autorizadas, produção em leiaute homologado, infraestrutura protegida e execução/medição de piloto real. Trechos estruturados, preparação interna de produção e registro de medições foram acrescentados na revisão de 04/10/2026. Cadastro independente de múltiplos acompanhantes permanece uma evolução do modelo.
 
 ## Plano de contingência
 

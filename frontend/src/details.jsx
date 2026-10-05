@@ -231,7 +231,8 @@ export function OccurrenceDetail({ id }) {
   );
 }
 export function TripDetail({ id }) {
-  const { S, find, can, seats, patientFor, requestFor } = useApp(),
+  const { S, find, can, seats, segmentLabel, patientFor, requestFor } =
+      useApp(),
     t = find("trips", id),
     v = find("vehicles", t.vehicle_id),
     d = find("drivers", t.driver_id),
@@ -282,7 +283,7 @@ export function TripDetail({ id }) {
         Lista operacional · {occs.length} pacientes
       </h3>
       <Table
-        headers={["Passageiro / embarque", "Confirmação", "Operação"]}
+        headers={["Passageiro / embarque", "Trecho", "Confirmação", "Operação"]}
         rows={occs.map((o) => {
           const p = patientFor(o),
             r = requestFor(o),
@@ -298,6 +299,9 @@ export function TripDetail({ id }) {
                 {p?.boarding}
                 {p?.accessible ? " · acessível" : ""}
               </Sub>
+            </>,
+            <>
+              <small>{segmentLabel(o)}</small>
             </>,
             <>
               <Badge>{o.confirmation}</Badge>
@@ -345,7 +349,8 @@ export function TripDetail({ id }) {
       )}
       <Info>
         Confirmação assistida e lista compartilhada com o motorista. Cada
-        alocação reserva o lugar em todo o percurso de ida e volta.
+        alocação reserva lugares entre as paradas escolhidas. A ocupação exibida
+        é o pico por trecho.
       </Info>
     </>
   );

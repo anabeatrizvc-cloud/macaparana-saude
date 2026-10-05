@@ -11,9 +11,15 @@ def password_hash(password, salt):
 
 def initialize(db):
     db.executescript(Path(__file__).with_name('schema.sql').read_text(encoding='utf-8'))
+    from app.extensions import migrate
+    migrate(db)
     if db.execute('SELECT 1 FROM users').fetchone():
+        if not db.execute("SELECT 1 FROM users WHERE username='faturamento'").fetchone():
+            salt = secrets.token_hex(16)
+            insert(db, 'users', dict(username='faturamento', name='Faturamento', role='faturamento', salt=salt, password=password_hash('demo123', salt)))
+            db.commit()
         return
-    for username, name, role in [('admin','Gestão municipal','admin'), ('regulacao','Equipe de regulação','regulacao'), ('transporte','Equipe de transporte','transporte'), ('motorista','Carlos · motorista','motorista'), ('financeiro','Equipe financeira','financeiro'), ('auditor','Controle interno','auditor')]:
+    for username, name, role in [('admin','Gestão municipal','admin'), ('regulacao','Equipe de regulação','regulacao'), ('transporte','Equipe de transporte','transporte'), ('motorista','Carlos · motorista','motorista'), ('financeiro','Equipe financeira','financeiro'), ('auditor','Controle interno','auditor'), ('faturamento','Faturamento','faturamento')]:
         salt = secrets.token_hex(16)
         insert(db, 'users', dict(username=username, name=name, role=role, salt=salt, password=password_hash('demo123', salt), driver_id=1 if role=='motorista' else None))
     today = date.today()

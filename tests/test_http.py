@@ -75,6 +75,20 @@ class HttpTests(unittest.TestCase):
         self.assertEqual(data['documents'],[])
         self.assertNotIn('bank',data['patients'][0])
 
+    def test_production_export_and_role_restriction(self):
+        from datetime import date, timedelta
+        self.login('faturamento')
+        status,body,_=self.request('/api/action',{'action':'production.save','data':{'occurrence_id':7,'procedure_code':'0000000001','quantity':1,'destination':'Revisão','note':'Dado fictício'}})
+        self.assertEqual(status,200,body)
+        month=(date.today()-timedelta(days=1)).isoformat()[:7]
+        status,body,headers=self.request('/api/production/export?month='+month)
+        self.assertEqual(status,200)
+        self.assertIn('0000000001',body.decode('utf-8-sig'))
+        self.assertIn('attachment',headers['Content-Disposition'])
+        self.request('/api/logout',{})
+        self.login('motorista')
+        self.assertEqual(self.request('/api/production/export?month='+month)[0],400)
+
     def test_document_and_export_download(self):
         self.login()
         status,body,headers=self.request('/api/documents/1')

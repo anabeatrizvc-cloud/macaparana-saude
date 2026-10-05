@@ -260,7 +260,7 @@ function Shell() {
           <Page />
           <div className="footer-note">
             <span>Macaparana Saúde · Gestão integrada de deslocamentos</span>
-            <span>React + Python · v1.1 · Dados armazenados localmente</span>
+            <span>React + Python · v1.2 · Dados armazenados localmente</span>
           </div>
         </div>
       </main>
@@ -292,12 +292,16 @@ function App() {
     !S
       ? false
       : S.user.role === "motorista"
-        ? ["trips", "help"].includes(id)
-        : id === "finance"
-          ? can("financeiro", "auditor")
-          : id === "audit"
-            ? can("auditor")
-            : true;
+        ? ["trips", "segments", "help"].includes(id)
+        : id === "production"
+          ? can("faturamento", "auditor")
+          : id === "pilot"
+            ? can("auditor", "financeiro", "transporte")
+            : id === "finance"
+              ? can("financeiro", "auditor")
+              : id === "audit"
+                ? can("auditor")
+                : true;
   const page =
     pages[route] && allowed(route)
       ? route
@@ -414,6 +418,7 @@ function App() {
               "Acompanhante",
               "Embarque",
               "Confirmação",
+              "Trecho",
               "Situação",
             ]}
             rows={S.occurrences
@@ -423,6 +428,15 @@ function App() {
                 requestFor(o)?.companion ? patientFor(o)?.companion : "—",
                 patientFor(o)?.boarding,
                 o.confirmation,
+                S.route_stops.filter((s) => s.trip_id === t.id).length
+                  ? S.route_stops
+                      .filter((s) => s.trip_id === t.id)
+                      .filter((s) =>
+                        [o.segment_start, o.segment_end].includes(s.position),
+                      )
+                      .map((s) => s.name)
+                      .join(" → ")
+                  : "Percurso integral",
                 o.boarding,
               ])}
           />
@@ -510,9 +524,32 @@ function App() {
     can,
     allowed,
     seats: (t) =>
-      S.occurrences
-        .filter((o) => o.trip_id === t.id)
-        .reduce((n, o) => n + 1 + (requestFor(o)?.companion || 0), 0),
+      Math.max(
+        0,
+        ...Array.from(
+          {
+            length: Math.max(
+              1,
+              S.route_stops.filter((s) => s.trip_id === t.id).length - 1,
+            ),
+          },
+          (_, i) =>
+            S.occurrences
+              .filter(
+                (o) =>
+                  o.trip_id === t.id &&
+                  o.segment_start <= i &&
+                  i < o.segment_end,
+              )
+              .reduce((n, o) => n + 1 + (requestFor(o)?.companion || 0), 0),
+        ),
+      ),
+    segmentLabel: (o) => {
+      const stops = S.route_stops.filter((s) => s.trip_id === o.trip_id);
+      return stops.length
+        ? `${stops[o.segment_start]?.name} → ${stops[o.segment_end]?.name}`
+        : "Percurso integral";
+    },
     matches: (value) =>
       !search ||
       String(value)

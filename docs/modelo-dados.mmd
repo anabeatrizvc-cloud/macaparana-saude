@@ -32,6 +32,41 @@ erDiagram
       text boarding
       bool attendance
       bool companion_proof
+      int segment_start
+      int segment_end
+      text confirmation_channel
+    }
+    TRIPS ||--o{ ROUTE_STOPS : possui
+    OCCURRENCES ||--o| PRODUCTION : prepara
+    ROUTE_STOPS {
+      int id PK
+      int trip_id FK
+      int position
+      text name
+    }
+    PRODUCTION {
+      int id PK
+      int occurrence_id FK
+      text procedure_code
+      int quantity
+      text status
+      text protocol
+    }
+    SERVICE_RECORDS {
+      int id PK
+      text kind
+      text owner
+      text status
+      text notes
+    }
+    PILOT_MEASUREMENTS {
+      int id PK
+      text indicator
+      float baseline
+      float measured
+      text scenario
+      text source
+      text responsible
     }
     BENEFITS {
       int id PK

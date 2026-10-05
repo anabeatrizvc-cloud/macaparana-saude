@@ -2,6 +2,7 @@ import { createContext, useContext } from "react";
 export const AppContext = createContext(null);
 export const useApp = () => useContext(AppContext);
 export const roles = {
+  faturamento: "Faturamento",
   admin: "Administrador",
   regulacao: "Regulação",
   transporte: "Transporte",
@@ -10,6 +11,10 @@ export const roles = {
   auditor: "Controle interno",
 };
 export const navigation = [
+  ["segments", "Rotas e trechos", "pin"],
+  ["production", "Produzir / faturar", "file"],
+  ["pilot", "Indicadores e piloto", "chart"],
+  ["support", "Suporte", "help"],
   ["dashboard", "Visão geral", "home"],
   ["patients", "Pacientes", "users"],
   ["requests", "Solicitações", "file"],

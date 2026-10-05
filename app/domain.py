@@ -82,6 +82,9 @@ PERMISSIONS = {
 
 
 def execute(db, user, action, data):
+    from app.extensions import PERMISSIONS as EXTRA, execute_extension
+    if action in EXTRA:
+        return execute_extension(db, user, action, data)
     require(user['role'] in PERMISSIONS.get(action, set()), 'Seu perfil não tem permissão para esta ação.')
     entity = action.split('.')[0]
     identifier = data.get('id')
@@ -185,11 +188,13 @@ def execute(db, user, action, data):
             require(request['status'] == 'Autorizada' and before['date'] == trip['date'], 'Data da viagem incompatível ou solicitação não autorizada.')
             vehicle = get(db, 'vehicles', trip['vehicle_id'])
             require(not patient['accessible'] or vehicle['accessible'], 'O paciente precisa de veículo acessível.')
-            seats = db.execute('SELECT COALESCE(SUM(1+r.companion),0) FROM occurrences o JOIN requests r ON r.id=o.request_id WHERE o.trip_id=?', (trip['id'],)).fetchone()[0]
-            require(seats+1+request['companion'] <= vehicle['capacity'], 'Capacidade do veículo excedida, incluindo acompanhante.')
+            from app.extensions import capacity, stops
+            start = int(data.get('segment_start', 0))
+            end = int(data.get('segment_end', len(stops(db, trip['id']))-1))
+            capacity(db, trip, request, start, end)
             other = db.execute('SELECT o.id FROM occurrences o JOIN requests r ON r.id=o.request_id JOIN trips t ON t.id=o.trip_id WHERE r.patient_id=? AND t.date=? AND t.departure<? AND t.arrival>?', (patient['id'], trip['date'], trip['arrival'], trip['departure'])).fetchone()
             require(not other, 'Paciente já alocado em viagem com horário sobreposto.')
-            result = dict(trip_id=trip['id'])
+            result = dict(trip_id=trip['id'], segment_start=start, segment_end=end)
     elif action.startswith('occurrence.'):
         table = 'occurrences'
         before = get(db, table, identifier)
@@ -201,7 +206,7 @@ def execute(db, user, action, data):
         if action == 'occurrence.confirm':
             require(trip['status'] == 'Planejada' and before['boarding'] == 'Pendente', 'A confirmação não pode ser alterada após o embarque ou encerramento.')
             require(data.get('status') in ('Confirmado', 'Recusado'), 'Confirmação inválida.')
-            result = dict(confirmation=data['status'])
+            result = dict(confirmation=data['status'], confirmation_channel=str(data.get('channel', 'Assistida'))[:50], confirmation_note=str(data.get('note', 'Registro pela equipe municipal'))[:500])
         elif action == 'occurrence.board':
             require(before['date'] <= date.today().isoformat(), 'Não é possível registrar embarque futuro.')
             require(trip['status'] == 'Planejada' and before['boarding'] == 'Pendente', 'Embarque já registrado ou viagem encerrada.')
@@ -308,7 +313,7 @@ def state(db, user):
     if role == 'motorista':
         result['trips'] = [t for t in result['trips'] if t['driver_id'] == user['driver_id']]
         trip_ids = {t['id'] for t in result['trips']}
-        result['occurrences'] = [{k:v for k,v in o.items() if k in ('id','request_id','date','trip_id','confirmation','boarding')} for o in result['occurrences'] if o['trip_id'] in trip_ids]
+        result['occurrences'] = [{k:v for k,v in o.items() if k in ('id','request_id','date','trip_id','confirmation','boarding','segment_start','segment_end','confirmation_channel','confirmation_note')} for o in result['occurrences'] if o['trip_id'] in trip_ids]
         req_ids = {o['request_id'] for o in result['occurrences']}
         result['requests'] = [{k:v for k,v in r.items() if k in ('id','patient_id','facility_id','companion')} for r in result['requests'] if r['id'] in req_ids]
         patient_ids = {r['patient_id'] for r in result['requests']}
@@ -322,4 +327,5 @@ def state(db, user):
                 patient.pop(key, None)
     result['user'] = {k:user[k] for k in ('id','name','role','username')}
     result['today'] = date.today().isoformat()
-    return result
+    from app.extensions import extend_state
+    return extend_state(db, user, result)

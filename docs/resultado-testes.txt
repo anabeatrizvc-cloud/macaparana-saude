@@ -1,5 +1,5 @@
 Macaparana Saúde — testes automatizados
-Execução: 2026-09-29T19:58:15
+Execução: 2026-10-04T21:10:55
 Python: 3.14.4
 Comando: python -m unittest discover -s tests -v
 
@@ -19,14 +19,20 @@ test_recurrence_crosses_months_without_duplicates (test_domain.MunicipalFlowTest
 test_recurrence_outside_authorization_is_blocked (test_domain.MunicipalFlowTests.test_recurrence_outside_authorization_is_blocked) ... ok
 test_transport_without_tfd_never_generates_benefit (test_domain.MunicipalFlowTests.test_transport_without_tfd_never_generates_benefit) ... ok
 test_unconfirmed_passenger_cannot_board (test_domain.MunicipalFlowTests.test_unconfirmed_passenger_cannot_board) ... ok
+test_backup_can_be_opened_and_does_not_overwrite (test_extensions.ExtensionTests.test_backup_can_be_opened_and_does_not_overwrite) ... ok
+test_permissions_and_migration_preserve_existing_data (test_extensions.ExtensionTests.test_permissions_and_migration_preserve_existing_data) ... ok
+test_pilot_support_and_assisted_confirmation_are_audited (test_extensions.ExtensionTests.test_pilot_support_and_assisted_confirmation_are_audited) ... ok
+test_production_requires_proof_and_preserves_sent_record (test_extensions.ExtensionTests.test_production_requires_proof_and_preserves_sent_record) ... ok
+test_segment_capacity_reuses_seat_but_rejects_overlap (test_extensions.ExtensionTests.test_segment_capacity_reuses_seat_but_rejects_overlap) ... ok
 test_cross_origin_and_missing_header_are_rejected (test_http.HttpTests.test_cross_origin_and_missing_header_are_rejected) ... ok
 test_data_and_source_files_are_not_served (test_http.HttpTests.test_data_and_source_files_are_not_served) ... ok
 test_document_and_export_download (test_http.HttpTests.test_document_and_export_download) ... ok
 test_driver_cannot_download_documents_or_export (test_http.HttpTests.test_driver_cannot_download_documents_or_export) ... ok
+test_production_export_and_role_restriction (test_http.HttpTests.test_production_export_and_role_restriction) ... ok
 test_session_cookie_and_logout (test_http.HttpTests.test_session_cookie_and_logout) ... ok
 
 ----------------------------------------------------------------------
-Ran 21 tests in 44.923s
+Ran 27 tests in 42.676s
 
 OK
 

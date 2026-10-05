@@ -1,3 +1,4 @@
+import { Segments, Production, Pilot, Support } from "./extensions";
 import React from "react";
 import {
   useApp,
@@ -948,6 +949,10 @@ function Delivery() {
     <>
       <Help />
       <section className="card">
+        <div className="card-head"><div><h2>Revisão do escopo</h2><p>Requisitos conferidos, complementos implementados e dependências municipais.</p></div></div>
+        <p><a href="/docs/verificacao-escopo.html" target="_blank" rel="noreferrer">Verificação requisito por requisito</a> · <a href="/docs/operacao.html" target="_blank" rel="noreferrer">Capacitação, suporte e piloto</a> · <a href="/docs/revisao.html" target="_blank" rel="noreferrer">Novas evidências</a></p>
+      </section>
+      <section className="card">
         <div className="card-head">
           <div>
             <h2>Fluxos funcionando e integrados</h2>
@@ -967,6 +972,10 @@ function Delivery() {
   );
 }
 export const pages = {
+  segments: Segments,
+  production: Production,
+  pilot: Pilot,
+  support: Support,
   dashboard: Dashboard,
   patients: Patients,
   requests: Requests,
