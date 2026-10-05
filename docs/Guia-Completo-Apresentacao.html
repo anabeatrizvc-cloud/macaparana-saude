@@ -1,0 +1,807 @@
+<!doctype html><html lang="pt-BR"><meta charset="utf-8"><title>Macaparana Saúde — Guia completo de apresentação</title><style>
+@page {size:A4;margin:17mm 16mm 19mm}
+*{box-sizing:border-box}body{font-family:Arial,sans-serif;color:#243e37;margin:0;background:#fff}
+.page{break-before:page}.page:first-child{break-before:auto}
+h1{font-size:23px;line-height:1.2;color:#145544;margin:0 0 16px;border-bottom:3px solid #b8d1a8;padding-bottom:12px}
+h2{font-size:19px;color:#275c49}h3{font-size:15px;color:#275c49;margin:16px 0 7px}
+p,li{font-size:14px;line-height:1.55}p{margin:9px 0}li{margin:5px 0}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:12px;line-height:1.4}
+th{background:#e8f0e1;text-align:left;color:#27543e}th,td{border:1px solid #dce5d6;padding:7px;vertical-align:top}
+tr{break-inside:avoid}thead{display:table-header-group}img{max-width:100%;max-height:104mm;object-fit:contain;display:block;margin:12px auto}
+blockquote{margin:13px 0;border-left:4px solid #a3bf8e;background:#f1f5eb;padding:8px 14px}
+code{font-family:Consolas,monospace;font-size:10px;overflow-wrap:anywhere}pre{background:#f0f4ed;padding:13px;white-space:pre-wrap}
+a{color:#1f6b51;overflow-wrap:anywhere}.cover{padding-top:35mm}.cover h1{font-size:49px;border:0}.cover h2{font-size:25px;max-width:500px}.cover p{font-size:13px}
+.eyebrow{letter-spacing:3px;text-transform:uppercase;color:#6d8560;font-size:10px}.identity{margin-top:30px!important;color:#536d48}
+.gallery img{max-height:205mm}.gallery p{font-size:10px}.cover img{width:55px;margin:0 0 20px}
+</style><body><section class="page cover"><img src="mark.svg" alt=""><div class="eyebrow">Projeto acadêmico · material de defesa</div><h1>Macaparana Saúde</h1>
+<h2>Guia completo para apresentação e defesa do projeto</h2>
+<p>Sistema acadêmico funcional de gestão de TFD, transporte sanitário e ajudas de custo. Material preparado a partir do código, dos requisitos fornecidos e das evidências locais de teste. Revisão técnica de referência: 04/10/2026.</p>
+<p><strong>Objetivo da apresentação:</strong> demonstrar como a solução acompanha o paciente, organiza a operação e relaciona comprovação, custos e responsabilidade por cada etapa.</p>
+<p><strong>Condição da entrega:</strong> aplicação local integrada, com dados fictícios, documentação, protótipo navegável, testes e capturas. Integrações oficiais e piloto municipal real permanecem dependentes da prefeitura.</p>
+<p>Repositório privado: https://github.com/anabeatrizvc-cloud/macaparana-saude</p></section><section class="page "><h1>1. Entenda a proposta antes de demonstrar</h1>
+<p>O enunciado de Macaparana pede uma solução para acompanhar pessoas que precisam de atendimento fora do município. Isso envolve mais do que transportar alguém: é necessário analisar a solicitação, planejar datas, reservar recursos, comprovar o atendimento e controlar eventual benefício.</p>
+<p>A proposta organiza essas informações em um mesmo sistema. O cadastro do paciente é reutilizado nas solicitações; cada solicitação autorizada pode gerar várias datas; cada data pode ser vinculada a uma viagem, documentos e benefícios. Assim, a equipe consegue consultar a origem de um registro financeiro ou operacional.</p>
+<p>O projeto atende diretamente pacientes, acompanhantes e equipes municipais. As unidades de referência e outros municípios são beneficiários indiretos; não há portal externo específico para essas instituições nesta versão.</p>
+<h3>Problema, resposta e valor esperado</h3>
+<table>
+<thead>
+<tr>
+<th>Necessidade apresentada</th>
+<th>Resposta do projeto</th>
+<th>Valor esperado, ainda sujeito ao piloto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Conciliar informações de setores diferentes</td>
+<td>Registros vinculados por identificadores</td>
+<td>Menos retrabalho e maior facilidade de conferência</td>
+</tr>
+<tr>
+<td>Planejar transporte e acompanhamento</td>
+<td>Agenda, frota, motorista, acessibilidade e trechos</td>
+<td>Melhor visibilidade da capacidade e da operação</td>
+</tr>
+<tr>
+<td>Identificar documentos e responsáveis</td>
+<td>Anexos e auditoria</td>
+<td>Conferência com origem verificável</td>
+</tr>
+<tr>
+<td>Relacionar custos e atendimentos</td>
+<td>Painéis, viagens, benefícios e produção</td>
+<td>Apoio à decisão com dados locais</td>
+</tr>
+</tbody>
+</table>
+<p>Não foi realizado diagnóstico de campo que permita afirmar quanto o município economiza hoje ou quanto economizaria com a solução. Essas são hipóteses de benefício a medir.</p>
+<h3>Fala sugerida para a abertura</h3>
+<blockquote>
+<p>“O Macaparana Saúde foi desenvolvido para integrar o processo de deslocamento em saúde: da solicitação ao acompanhamento financeiro. A proposta permite distinguir quem foi agendado, quem viajou, quem comprovou atendimento e qual é a situação do benefício, mantendo os documentos e os eventos relacionados.”</p>
+</blockquote></section><section class="page "><h1>2. Conceitos que você precisa explicar</h1>
+<table>
+<thead>
+<tr>
+<th>Termo</th>
+<th>Significado no projeto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SUS</td>
+<td>Sistema Único de Saúde, contexto do público atendido no enunciado</td>
+</tr>
+<tr>
+<td>TFD</td>
+<td>Tratamento Fora do Domicílio; modalidade separada no cadastro e no cálculo demonstrativo</td>
+</tr>
+<tr>
+<td>Transporte sanitário</td>
+<td>Transporte para atendimento sem gerar automaticamente benefício de TFD</td>
+</tr>
+<tr>
+<td>CNES</td>
+<td>Identificador do estabelecimento de saúde, informado manualmente na referência</td>
+</tr>
+<tr>
+<td>CNS</td>
+<td>Identificador do usuário de saúde; campo de cadastro com validação de formato</td>
+</tr>
+<tr>
+<td>Competência</td>
+<td>Mês usado para organizar conferência, calendário e consultas financeiras</td>
+</tr>
+<tr>
+<td>Ocorrência</td>
+<td>Uma data de atendimento vinculada à solicitação</td>
+</tr>
+<tr>
+<td>Comprovação</td>
+<td>Registro apoiado por declaração anexada e informações de permanência</td>
+</tr>
+<tr>
+<td>Produção</td>
+<td>Preparação interna de dados de atendimento para revisão pelo faturamento</td>
+</tr>
+<tr>
+<td>Rastreabilidade</td>
+<td>Possibilidade de relacionar um registro à sua origem e às alterações registradas</td>
+</tr>
+</tbody>
+</table>
+<h3>Quatro fatos diferentes</h3>
+<p><strong>Deslocamento:</strong> o passageiro embarcou ou ficou ausente. <strong>Atendimento:</strong> há comprovação vinculada à ocorrência. <strong>Benefício:</strong> foi gerado um valor segundo uma regra demonstrativa. <strong>Pagamento:</strong> a equipe registrou a etapa financeira e uma data.</p>
+<p>Esses fatos são mantidos em campos e registros diferentes. Embarcar não comprova atendimento. Comprovar atendimento não significa ter recebido dinheiro. A modalidade de transporte sanitário não é convertida automaticamente em TFD.</p>
+<h3>Exemplo para a banca</h3>
+<p>Uma paciente pode confirmar presença, embarcar e ainda ter a declaração pendente. Nesse caso, o sistema registra o deslocamento, mas não deve tratá-lo como atendimento comprovado. Se houver acompanhante, sua comprovação é independente da declaração da paciente.</p>
+<p>Este material descreve o comportamento do software. Critérios normativos, valores e elegibilidade reais devem ser homologados pelo município; os valores da demonstração não são parâmetros legais.</p></section><section class="page "><h1>3. Tecnologias utilizadas e suas funções</h1>
+<table>
+<thead>
+<tr>
+<th>Tecnologia</th>
+<th>Uso concreto no projeto</th>
+<th>Motivo da escolha para esta entrega</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python</td>
+<td>Servidor HTTP, regras de negócio, autenticação, consultas e exportações</td>
+<td>Executar localmente com poucas dependências</td>
+</tr>
+<tr>
+<td>React e React DOM</td>
+<td>Interface com componentes, formulários, estado e navegação</td>
+<td>Compartilhar dados entre telas e atualizar a experiência após cada operação</td>
+</tr>
+<tr>
+<td>JavaScript e JSX</td>
+<td>Lógica da interface e descrição dos componentes</td>
+<td>Organizar a interação com o usuário</td>
+</tr>
+<tr>
+<td>HTML e CSS</td>
+<td>Estrutura visual, impressão e adaptação ao celular</td>
+<td>Apresentar formulários e tabelas de forma legível</td>
+</tr>
+<tr>
+<td>Vite</td>
+<td>Ambiente de desenvolvimento e geração do frontend compilado</td>
+<td>Produzir os arquivos estáticos que o Python entrega ao navegador</td>
+</tr>
+<tr>
+<td>SQLite</td>
+<td>Banco local com relacionamentos, documentos e auditoria</td>
+<td>Persistência sem instalar um serviço separado de banco</td>
+</tr>
+<tr>
+<td>JSON e HTTP</td>
+<td>Comunicação entre navegador e servidor</td>
+<td>Transportar solicitações e respostas estruturadas</td>
+</tr>
+<tr>
+<td>Git e GitHub</td>
+<td>Histórico e armazenamento do código</td>
+<td>Versionar e permitir revisão do projeto</td>
+</tr>
+</tbody>
+</table>
+<p>O <code>package.json</code> declara React/React DOM <code>^19.3.0</code>, Vite <code>^8.3.1</code>, plugin React <code>^6.1.1</code> e Prettier <code>^3.9.9</code>. O arquivo de lock acompanha o projeto para registrar a instalação das dependências. Python 3.14.4 aparece na evidência dos testes. Essas informações descrevem o ambiente do projeto, não uma recomendação de versões para produção.</p>
+<h3>Ferramentas de desenvolvimento e documentação</h3>
+<p>Node.js e npm foram usados para instalar dependências e compilar o frontend. Prettier organiza o código. <code>unittest</code> testa regras e HTTP. Playwright controla o navegador nos testes e capturas. Markdown estrutura a documentação; Chromium gera os PDFs; PyMuPDF permite conferir o conteúdo dos PDFs. Mermaid e SVG representam processos e arquitetura.</p>
+<p><strong>Na apresentação:</strong> a interface já está compilada. Basta Python e um navegador; não é necessário executar npm ou acessar sistemas externos para abrir a entrega. O backend usa a biblioteca padrão do Python: não utiliza Django ou Flask. O frontend utiliza componentes React reais, não apenas imagens de telas.</p></section><section class="page "><h1>4. Como as partes se comunicam</h1>
+<p><img alt="Arquitetura da aplicação local" src="arquitetura.svg" /></p>
+<ol>
+<li>O usuário preenche uma tela React e solicita uma ação.</li>
+<li>A interface envia dados em JSON à API Python.</li>
+<li>O servidor identifica a sessão e verifica a permissão do perfil.</li>
+<li>As regras verificam validade, vínculos e condições da operação.</li>
+<li>O SQLite registra a alteração e o evento de auditoria na transação.</li>
+<li>A interface consulta o estado atualizado e mostra o resultado.</li>
+</ol>
+<h3>Exemplo: alocar um passageiro</h3>
+<p>Ao clicar em alocar, o servidor verifica se a solicitação está autorizada, se a data corresponde à viagem, se há veículo acessível quando necessário e se o intervalo de paradas tem capacidade. Se alguma condição falhar, a operação retorna uma mensagem e não deve efetivar uma alocação inválida.</p>
+<h3>Por que a regra fica no servidor?</h3>
+<p>O navegador ajuda a preencher os campos, mas não é a autoridade final. Uma tentativa de enviar dados diretamente à API também precisa passar pelas validações do Python. Isso é especialmente importante para permissões, capacidade, comprovação e geração de benefícios.</p>
+<h3>Persistência e escopo de execução</h3>
+<p>Os registros ficam no arquivo SQLite, não apenas na memória da página. Recarregar a interface ou reiniciar o servidor preserva os dados salvos. A sessão de login, por outro lado, fica na memória do servidor e pode exigir novo acesso após reinício. O endereço local não significa que o sistema esteja publicado na internet.</p></section><section class="page "><h1>5. Organização do código e do banco</h1>
+<table>
+<thead>
+<tr>
+<th>Arquivo ou pasta</th>
+<th>Responsabilidade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>server.py</code></td>
+<td>Servir a interface, receber HTTP, controlar sessão e expor a API</td>
+</tr>
+<tr>
+<td><code>app/domain.py</code></td>
+<td>Regras principais de cadastro, autorização, agenda, viagem, comprovação e benefício</td>
+</tr>
+<tr>
+<td><code>app/extensions.py</code></td>
+<td>Trechos, preparação da produção, suporte, piloto e migração complementar</td>
+</tr>
+<tr>
+<td><code>app/schema.sql</code></td>
+<td>Estrutura inicial do banco relacional</td>
+</tr>
+<tr>
+<td><code>app/seed.py</code></td>
+<td>Inicialização dos perfis e registros fictícios</td>
+</tr>
+<tr>
+<td><code>frontend/src/</code></td>
+<td>Componentes, formulários, detalhes, telas e contexto React</td>
+</tr>
+<tr>
+<td><code>static/build/</code></td>
+<td>Frontend compilado que acompanha a entrega</td>
+</tr>
+<tr>
+<td><code>tests/</code></td>
+<td>Testes das regras e das requisições HTTP</td>
+</tr>
+<tr>
+<td><code>scripts/</code></td>
+<td>Automação de teste, captura, documentação, backup e empacotamento</td>
+</tr>
+<tr>
+<td><code>docs/</code></td>
+<td>PDFs, fontes editáveis, diagramas e evidências</td>
+</tr>
+</tbody>
+</table>
+<h3>Relações principais</h3>
+<p>Um <strong>paciente</strong> possui solicitações. A <strong>solicitação</strong> aponta para a referência, modalidade, especialidade e período autorizado. A <strong>ocorrência</strong> representa uma data da solicitação e pode apontar para uma viagem. A <strong>viagem</strong> aponta para veículo, motorista e paradas. O <strong>documento</strong> pertence à solicitação ou à ocorrência. O <strong>benefício</strong> aponta para a ocorrência e a versão da regra. A <strong>produção</strong> preparada também aponta para a ocorrência.</p>
+<p>As tabelas complementares registram paradas, produção, suporte/capacitação e medições do piloto. A auditoria registra autor, ação, entidade, horário e conteúdo de alteração quando aplicável.</p>
+<h3>Decisões importantes</h3>
+<p>Chaves estrangeiras ajudam a preservar vínculos. A agenda usa unicidade por solicitação e data. O benefício usa unicidade por ocorrência e beneficiário. Valores financeiros são armazenados em centavos. Os anexos ficam no banco com hash e metadados. As tabelas complementares são criadas na inicialização e as colunas novas são adicionadas sem apagar a base existente.</p>
+<p>O modelo é adequado ao demonstrador, mas mantém simplificações: um acompanhante atual por paciente, permanência textual e viagens com saída/retorno no mesmo dia.</p></section><section class="page "><h1>6. Quem utiliza cada área</h1>
+<table>
+<thead>
+<tr>
+<th>Perfil de login</th>
+<th>Papel demonstrado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>admin</code></td>
+<td>Executa as ações administrativas e todos os fluxos da demonstração</td>
+</tr>
+<tr>
+<td><code>regulacao</code></td>
+<td>Mantém cadastros, solicitações, documentos, decisões, agenda e comprovação</td>
+</tr>
+<tr>
+<td><code>transporte</code></td>
+<td>Planeja recursos, viagens, paradas, alocações e operação</td>
+</tr>
+<tr>
+<td><code>motorista</code></td>
+<td>Acessa suas viagens e dados operacionais; confirma, registra embarque/ausência e execução</td>
+</tr>
+<tr>
+<td><code>financeiro</code></td>
+<td>Calcula benefícios demonstrativos e acompanha etapas até pagamento</td>
+</tr>
+<tr>
+<td><code>faturamento</code></td>
+<td>Prepara produção, registra encaminhamento para revisão e exporta dados internos</td>
+</tr>
+<tr>
+<td><code>auditor</code></td>
+<td>Consulta auditoria e dados de controle; registra medições do piloto e abre registros de suporte/capacitação</td>
+</tr>
+</tbody>
+</table>
+<p>Todos os perfis acadêmicos usam <code>demo123</code>. Essa senha pública facilita a demonstração com dados fictícios. Uma operação real exige contas individuais e política de acesso própria.</p>
+<h3>O que demonstrar sobre proteção de dados</h3>
+<p>Entre como motorista e mostre que a API entrega apenas as viagens desse motorista e uma seleção de dados operacionais. Esse perfil não recebe CPF, CNS, dados bancários, documentos clínicos ou especialidade nos objetos projetados. Não basta esconder um botão: há restrição na resposta do servidor e nas ações permitidas.</p>
+<p>O perfil de transporte também recebe dados reduzidos. Financeiro, regulação, faturamento e controle possuem acessos relacionados às suas tarefas; essa distribuição deverá ser validada com o município antes do uso real.</p>
+<h3>Observação para a defesa</h3>
+<p>O perfil de auditor não autoriza solicitações nem paga benefícios, mas pode registrar medições e chamados conforme a implementação atual. Evite dizer que ele é absolutamente incapaz de escrever no sistema.</p></section><section class="page "><h1>7. Cadastro, solicitação e autorização</h1>
+<h3>Requisitos atendidos</h3>
+<p>Paciente e acompanhante; endereço; ponto de embarque; dados bancários; referência com CNES; especialidade; laudo; solicitação, análise e autorização; diferenciação de modalidades.</p>
+<p>O cadastro reúne nome, identificação, nascimento, contato, endereço, ponto de embarque, necessidade de acessibilidade, acompanhante e campo bancário. Os campos de identificação possuem validação de formato; isso não equivale a uma consulta a uma base oficial.</p>
+<p>Uma solicitação reutiliza o paciente e a unidade de referência ativa. A equipe escolhe a modalidade, informa especialidade, período e necessidade de acompanhante. O laudo é anexado à solicitação. A decisão pode autorizar, deixar pendente ou negar, com justificativa.</p>
+<p><strong>Bloqueio relevante:</strong> a autorização exige laudo anexado. O acompanhante precisa estar cadastrado quando a solicitação o prevê. A validade inicial e final precisa ser coerente.</p>
+<p><img alt="Solicitações e situação dos processos" src="telas/04-requests.png" /></p>
+<p><strong>Como explicar:</strong> “O cadastro evita repetir o paciente a cada mês. A solicitação reúne a análise assistencial e a autorização; as datas de tratamento serão geradas a partir dela.”</p></section><section class="page "><h1>8. Calendário e continuidade entre competências</h1>
+<h3>Requisitos atendidos</h3>
+<p>Recorrências semanais, datas avulsas, reutilização da autorização dentro da validade e acompanhamento entre meses.</p>
+<p>A equipe escolhe a solicitação autorizada, o período e os dias da semana. O sistema gera uma ocorrência para cada data aplicável. Para um atendimento avulso, informa-se a mesma data no início e no fim. As datas precisam estar dentro da validade da autorização.</p>
+<p>Uma autorização pode abranger vários meses. A visualização muda por competência, mas os registros continuam vinculados à mesma solicitação. Gerar novamente uma série não duplica datas existentes para aquela solicitação.</p>
+<p><img alt="Calendário por competência" src="telas/05-calendar.png" /></p>
+<h3>Exemplo para demonstrar</h3>
+<p>Autorize um caso fictício por dois meses e selecione um dia semanal. Mostre datas em duas competências e repita a geração. Explique que a unicidade está protegida no banco e que o teste automatizado verifica essa continuidade.</p>
+<p><strong>Limite:</strong> o sistema não tem uma entidade independente de tratamento com suspensão e revisão completa de séries. Nesta versão, a solicitação autorizada agrupa as ocorrências.</p></section><section class="page "><h1>9. Viagens, recursos e trechos</h1>
+<h3>Requisitos atendidos</h3>
+<p>Veículos, motoristas, capacidade, acessibilidade, rotas, data, trecho e registro de alterações.</p>
+<p>Uma viagem define data, horários, destino, rota, veículo, motorista e quilometragem estimada. O servidor verifica disponibilidade, validade da CNH e conflito de horário do veículo ou motorista. A alocação exige ocorrência na data da viagem e autorização válida.</p>
+<p>Em Rotas e trechos, a equipe define paradas ordenadas. O passageiro ocupa lugares entre o embarque e o desembarque planejados. O acompanhante também ocupa uma vaga. Um passageiro que desce em uma parada libera capacidade planejada nos segmentos seguintes.</p>
+<h3>Exemplo simples de capacidade</h3>
+<table>
+<thead>
+<tr>
+<th>Segmento</th>
+<th>Capacidade</th>
+<th>Reserva do paciente A + acompanhante</th>
+<th>Reserva do paciente B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Macaparana → Carpina</td>
+<td>2</td>
+<td>2 lugares</td>
+<td>Não cabe nesse segmento</td>
+</tr>
+<tr>
+<td>Carpina → Recife</td>
+<td>2</td>
+<td>0, se o desembarque foi em Carpina</td>
+<td>Pode reservar até a capacidade disponível</td>
+</tr>
+</tbody>
+</table>
+<p>Esse é um exemplo didático, não um resultado municipal. O teste de trechos verifica a reutilização de vaga em intervalos distintos e o bloqueio de intervalos sobrepostos sem capacidade.</p>
+<p>Alterar paradas exige viagem planejada, sem alocações e justificativa. Para reorganizar a rota, a equipe retira alocações ainda pendentes, registra o motivo e aloca novamente. Não é permitido retirar passageiros após registrar embarque ou ausência.</p>
+<p><strong>Limites:</strong> a rota não é calculada por mapa, não existe GPS e o embarque é registrado por ocorrência. A capacidade por trecho representa reserva, não rastreamento físico de cada desembarque.</p></section><section class="page "><h1>10. Confirmação e lista do motorista</h1>
+<h3>Requisitos atendidos</h3>
+<p>Confirmação antecipada, alternativa assistida, lista operacional e execução da viagem.</p>
+<p>A equipe registra confirmação ou recusa, canal e observação. O canal pode ser telefone, atendimento presencial, agente de saúde ou resposta recebida externamente por WhatsApp autorizado. Selecionar WhatsApp no registro não envia mensagem pelo aplicativo.</p>
+<p>O motorista consulta sua lista com paciente, acompanhante, ponto de embarque, trecho, confirmação e situação operacional. A lista também pode ser aberta em formato de impressão. A confirmação alimenta a mesma ocorrência usada pelo planejamento.</p>
+<p>O embarque exige confirmação, salvo o registro de ausência. Não se registra embarque futuro. Para encerrar a viagem, todos os passageiros precisam ter embarque ou ausência registrados. No encerramento são informados quilômetros reais, litros, custo e observações.</p>
+<p><img alt="Operação e lista da viagem" src="telas/12-operacao.png" /></p>
+<p><strong>Fala sugerida:</strong> “A alternativa assistida permite que a equipe registre a resposta do cidadão sem exigir que ele use um aplicativo. O motorista trabalha com a lista atualizada, enquanto a informação permanece vinculada ao atendimento.”</p></section><section class="page "><h1>11. Conferência mensal e comprovação</h1>
+<h3>Requisitos atendidos</h3>
+<p>Tabela compacta de pacientes e datas; conciliação entre declaração, viagem e permanência; comprovação separada do acompanhante.</p>
+<p>A conferência mensal mostra as ocorrências por paciente e data. A célula leva ao detalhe, permitindo consultar os registros e documentos relacionados. A equipe pode distinguir transporte realizado, atendimento comprovado e pendência documental.</p>
+<p>A comprovação do paciente exige embarque registrado, declaração anexada e descrição de permanência. A comprovação do acompanhante exige autorização correspondente e declaração separada. A presença de um documento do paciente não comprova automaticamente o acompanhante.</p>
+<p><img alt="Conferência por pacientes e datas" src="telas/07-review.png" /></p>
+<h3>O que valorizar na apresentação</h3>
+<p>Abra uma ocorrência e mostre como os documentos sustentam o registro. Explique que deslocamento e atendimento permanecem distintos. Se faltar a prova do acompanhante, o sistema pode ter paciente comprovado e acompanhante pendente.</p>
+<p><strong>Limite:</strong> a permanência é texto obrigatório. Pernoites, períodos estruturados e regras detalhadas de diárias precisam de evolução e homologação municipal.</p></section><section class="page "><h1>12. Ajudas de custo e controle financeiro</h1>
+<h3>Requisitos atendidos</h3>
+<p>Folha de ajudas de custo, encaminhamento à contabilidade, acompanhamento do pagamento e etapas separadas.</p>
+<p>O cálculo demonstrativo considera ocorrências de TFD autorizadas, com embarque e atendimento comprovados. O benefício do acompanhante depende de sua comprovação separada. Transporte sanitário não gera benefício de TFD nessa regra.</p>
+<p>Cada benefício mantém o beneficiário, a ocorrência, o valor em centavos e a versão da regra utilizada. Recalcular não duplica benefícios existentes. Criar uma nova versão de regra não muda os valores já gerados.</p>
+<h3>Etapas financeiras</h3>
+<p><strong>Calculado → Aprovado → Contabilidade → Pago.</strong> O encaminhamento e o pagamento exigem referência contábil. O pagamento exige data coerente com o atendimento e não futura. A folha pode ser exportada para conferência.</p>
+<p><img alt="Ajudas de custo e estados financeiros" src="telas/08-finance.png" /></p>
+<p><strong>Explique com precisão:</strong> “Registrar pagamento significa acompanhar a informação no sistema. O software não transfere dinheiro e não consulta a conta bancária. Os valores demonstrativos não foram homologados para pagamento real.”</p></section><section class="page "><h1>13. Preparação da produção e faturamento</h1>
+<h3>Requisito atendido</h3>
+<p>Preparar dados de produção para revisão e posterior uso nos sistemas oficiais, com vínculos até os eventos de origem.</p>
+<p>O perfil de faturamento consulta uma competência e identifica pendências de transporte, comprovação e preparação. Somente ocorrências conciliadas podem gerar o registro preparado. A equipe informa código de procedimento, quantidade, destino da revisão e observações.</p>
+<p>O código é verificado quanto ao formato de dez dígitos; a aplicação não consulta o catálogo oficial para confirmar existência, elegibilidade ou compatibilidade. A exportação CSV contém identificadores de preparação, ocorrência e solicitação, além dos dados necessários à conferência interna.</p>
+<p>Ao encaminhar, registra-se protocolo interno. O estado passa para encaminhada para revisão. Uma nova preparação não sobrescreve um registro já encaminhado.</p>
+<h3>Diferencie três etapas</h3>
+<table>
+<thead>
+<tr>
+<th>Etapa</th>
+<th>Situação na entrega</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Organizar e conciliar os registros</td>
+<td>Implementado</td>
+</tr>
+<tr>
+<td>Preparar e encaminhar internamente para revisão</td>
+<td>Implementado, com CSV e protocolo</td>
+</tr>
+<tr>
+<td>Transmitir e obter aceite de um sistema oficial</td>
+<td>Não integrado; depende de interface, regras e homologação</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Fala sugerida:</strong> “Nós entregamos a preparação rastreável da produção. O arquivo não é apresentado como um leiaute oficial. A etapa de transmissão precisa ser definida e autorizada com o município.”</p>
+<p>É necessário revisar CNS, CNES, código, modalidade, quantidade e exigências do destinatário. Dados fictícios e códigos usados nos testes não têm validade de produção oficial.</p></section><section class="page "><h1>14. Indicadores e resultados do piloto</h1>
+<h3>Requisitos atendidos no software</h3>
+<p>Relacionar informações assistenciais, operacionais e financeiras; oferecer indicadores e permitir o registro de medições do piloto.</p>
+<table>
+<thead>
+<tr>
+<th>Indicador</th>
+<th>Cálculo ou definição implementada</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Custo das viagens encerradas</td>
+<td>Soma dos custos informados nas viagens encerradas da competência</td>
+</tr>
+<tr>
+<td>Quilômetros reais</td>
+<td>Soma dos quilômetros dessas viagens</td>
+</tr>
+<tr>
+<td>Consumo em km/l</td>
+<td>Quilômetros divididos pelos litros registrados; sem divisão por zero</td>
+</tr>
+<tr>
+<td>Custo por embarque</td>
+<td>Custo das viagens encerradas dividido pelos embarques de pacientes nessas mesmas viagens</td>
+</tr>
+<tr>
+<td>Embarques e ausências</td>
+<td>Contagem de ocorrências com cada estado na competência</td>
+</tr>
+<tr>
+<td>Comprovações pendentes</td>
+<td>Ocorrências com embarque, mas sem atendimento comprovado</td>
+</tr>
+<tr>
+<td>Ocupação por trecho</td>
+<td>Lugares reservados em cada intervalo de paradas, incluindo acompanhante</td>
+</tr>
+</tbody>
+</table>
+<p>O custo de transporte não inclui as ajudas de custo. A ocupação por trecho é planejada; não mede presença física individual do acompanhante. Essas definições evitam misturar numeradores e denominadores.</p>
+<h3>Registro de medição</h3>
+<p>O formulário guarda indicador, unidade, linha de base, resultado, período, fonte, responsável e origem: simulação acadêmica ou rotina municipal. A variação percentual é <code>(resultado − base) / base × 100</code>; base zero impede essa comparação percentual.</p>
+<p>Registrar um número não comprova o resultado. É necessário conservar uma fonte verificável, usar períodos comparáveis e explicar volume, critérios e limitações. Uma variação negativa pode ser boa para tempo de espera e ruim para quantidade de atendimentos; a interpretação depende do indicador.</p>
+<p><strong>O que pode ser afirmado hoje:</strong> existem ferramentas de medição e testes locais. Não houve piloto municipal comprovado nem economia real demonstrada.</p></section><section class="page "><h1>15. Segurança, auditoria e continuidade</h1>
+<h3>Medidas implementadas</h3>
+<p>As senhas são derivadas com PBKDF2-HMAC-SHA256 e salt; não são armazenadas como texto simples. A sessão usa token aleatório no servidor e cookie HttpOnly/SameSite. As ações possuem controle de perfil no backend. Requisições de alteração exigem identificação da aplicação e verificam origem local quando informada.</p>
+<p>Consultas usam parâmetros nos valores. O banco usa chaves estrangeiras e transações. Os anexos aceitam tipos definidos e limite de tamanho, com download autenticado. Eventos de alteração, acesso por login, download e exportação geram auditoria conforme o fluxo implementado.</p>
+<p>Um hash do documento ajuda a identificar seu conteúdo armazenado; não é uma assinatura digital e não comprova autenticidade clínica. A auditoria local não é um repositório imutável contra alguém que controla o arquivo do banco.</p>
+<h3>Backup</h3>
+<p><code>python scripts/backup.py</code> cria uma cópia consistente do SQLite, verifica integridade e não sobrescreve um destino existente. O teste reabre a cópia e consulta os registros. Banco e backups ficam fora do Git e do pacote de distribuição.</p>
+<h3>Limites que precisam ser reconhecidos</h3>
+<p>O banco não tem criptografia própria configurada. As contas são demonstrativas. Não há MFA, antivírus de anexos, infraestrutura de produção, teste de invasão completo ou certificação de conformidade. O ambiente local usa HTTP em loopback.</p>
+<p>Antes de dados reais, o município precisa definir responsabilidades, finalidade, retenção, contas individuais, infraestrutura protegida, HTTPS, acesso ao armazenamento, backup externo, recuperação e resposta a incidentes. A apresentação deve mostrar as medidas técnicas existentes sem declarar conformidade jurídica integral.</p></section><section class="page "><h1>16. Capacitação, suporte e implantação futura</h1>
+<p>O projeto inclui manual, roteiro e área para registrar capacitações e chamados. O registro informa tipo, título, responsável, descrição e situação. A conclusão conserva a observação anterior e acrescenta a solução ou evidência. Não existe equipe de suporte externo contratada pelo projeto.</p>
+<h3>Oficina proposta de 90 minutos</h3>
+<table>
+<thead>
+<tr>
+<th>Tempo</th>
+<th>Exercício</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10 minutos</td>
+<td>Acesso, perfis e cuidado com os dados</td>
+</tr>
+<tr>
+<td>20 minutos</td>
+<td>Cadastro, solicitação, laudo, decisão e calendário</td>
+</tr>
+<tr>
+<td>20 minutos</td>
+<td>Rota, trechos, confirmação, lista e execução</td>
+</tr>
+<tr>
+<td>20 minutos</td>
+<td>Declarações, conferência, benefício e etapas financeiras</td>
+</tr>
+<tr>
+<td>10 minutos</td>
+<td>Preparação da produção e revisão interna</td>
+</tr>
+<tr>
+<td>10 minutos</td>
+<td>Auditoria, chamado e registro de medição</td>
+</tr>
+</tbody>
+</table>
+<p>Uma oficina só deve ser marcada como concluída quando realizada. Os registros nas capturas são fictícios e demonstram o funcionamento do formulário.</p>
+<h3>Etapas para o município</h3>
+<ol>
+<li>Validar processos e regras com cada equipe e definir responsáveis.</li>
+<li>Preparar infraestrutura, acesso e proteção dos dados.</li>
+<li>Homologar valores, critérios financeiros e produção oficial.</li>
+<li>Capacitar a equipe e executar um piloto controlado.</li>
+<li>Medir resultados com fontes, revisar incidentes e decidir sobre expansão.</li>
+</ol>
+<p>Para replicar em outro município, será necessário revisar regras, identidade visual, cadastros, infraestrutura e responsabilidades. O código pode servir de base; a versão atual não é uma plataforma multi-município com isolamento de bases por cliente.</p></section><section class="page "><h1>17. Evidências: o que realmente foi verificado</h1>
+<p><strong>27 testes automatizados aprovados</strong> na revisão de 04/10/2026, conforme <code>docs/resultado-testes.txt</code>. A contagem reúne testes de domínio, extensões e HTTP; não é uma afirmação de cobertura total do código.</p>
+<table>
+<thead>
+<tr>
+<th>Grupo</th>
+<th>Exemplos de comportamento verificado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Autorização e calendário</td>
+<td>Exigência de laudo, validade, recorrência entre meses e duplicidade</td>
+</tr>
+<tr>
+<td>Transporte</td>
+<td>Conflitos de recurso, CNH, acessibilidade, capacidade e acompanhante</td>
+</tr>
+<tr>
+<td>Trechos</td>
+<td>Reutilização de vaga sem sobreposição e bloqueio de excesso de capacidade</td>
+</tr>
+<tr>
+<td>Comprovação e financeiro</td>
+<td>Prova independente, modalidade sem TFD, recálculo e pagamento</td>
+</tr>
+<tr>
+<td>API e perfis</td>
+<td>Sessão, origem, restrição do motorista, downloads e exportações</td>
+</tr>
+<tr>
+<td>Complementos</td>
+<td>Produção comprovada, preservação após encaminhamento, piloto e suporte</td>
+</tr>
+<tr>
+<td>Dados</td>
+<td>Migração preservada e backup que pode ser reaberto</td>
+</tr>
+</tbody>
+</table>
+<h3>Teste no navegador</h3>
+<p>O arquivo <code>docs/teste-navegador.json</code> registra um fluxo com resultado PASS: cadastro, solicitação, laudo, autorização, agenda, viagem, confirmação, embarque, encerramento, declaração, comprovação, cálculo, aprovação, contabilidade, pagamento e recarga. Não foram registrados erros JavaScript nessa execução.</p>
+<p>O arquivo <code>docs/revisao/resultado.json</code> registra os novos fluxos, sete capturas e verificação das quatro novas telas em largura de 390 pixels. Há também 49 capturas históricas do fluxo anterior e 13 telas do protótipo. São conjuntos distintos, não 69 testes independentes.</p>
+<p>O pacote foi extraído em uma pasta temporária, teve seus hashes conferidos e iniciou com base limpa. Esse teste valida a distribuição local, não desempenho em produção ou integração com serviços oficiais.</p>
+<p><strong>Resposta recomendada:</strong> “Testamos as regras críticas e o fluxo integrado. Ainda seriam necessários testes de carga, segurança ampliada, acessibilidade formal e homologação municipal para produção.”</p></section><section class="page "><h1>18. Matriz de atendimento aos requisitos</h1>
+<p>Use esta matriz para responder diretamente ao enunciado. “Implementado” significa funcional no demonstrador; não significa homologado para uso real.</p>
+<table>
+<thead>
+<tr>
+<th>Requisito</th>
+<th>Funcionalidade que responde</th>
+<th>Condição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pacientes e acompanhantes</td>
+<td>Cadastro com vínculo e acessibilidade</td>
+<td>Um acompanhante atual por paciente</td>
+</tr>
+<tr>
+<td>Transporte sem enquadramento em TFD</td>
+<td>Modalidade própria na solicitação</td>
+<td>Não gera ajuda de TFD pela regra demonstrativa</td>
+</tr>
+<tr>
+<td>Solicitação, análise e autorização</td>
+<td>Estados, laudo e decisão com justificativa</td>
+<td>Implementado</td>
+</tr>
+<tr>
+<td>Endereço, embarque e banco</td>
+<td>Campos do cadastro</td>
+<td>Informação manual; sem validação bancária</td>
+</tr>
+<tr>
+<td>Referência CNES e especialidade</td>
+<td>Cadastro reutilizável e vínculo da solicitação</td>
+<td>Formato local; sem consulta externa</td>
+</tr>
+<tr>
+<td>Recorrência e avulsos entre competências</td>
+<td>Agenda por período e dias da semana</td>
+<td>Validade e unicidade verificadas</td>
+</tr>
+<tr>
+<td>Veículo, motorista e acessibilidade</td>
+<td>Planejamento e validação no servidor</td>
+<td>Implementado no recorte local</td>
+</tr>
+<tr>
+<td>Rotas e alocação por trecho</td>
+<td>Paradas, intervalo e capacidade por segmento</td>
+<td>Sem mapa ou GPS</td>
+</tr>
+<tr>
+<td>Alterações, km, consumo e custo</td>
+<td>Auditoria, retirada justificada e encerramento</td>
+<td>Registros informados pela equipe</td>
+</tr>
+<tr>
+<td>Confirmação e alternativa assistida</td>
+<td>Resposta, canal e lista do motorista</td>
+<td>Sem envio automático por WhatsApp</td>
+</tr>
+<tr>
+<td>Conferência mensal compacta</td>
+<td>Pacientes × datas com detalhe da ocorrência</td>
+<td>Implementado</td>
+</tr>
+<tr>
+<td>Declaração e permanência</td>
+<td>Anexos e conciliação</td>
+<td>Permanência textual</td>
+</tr>
+<tr>
+<td>Prova separada do acompanhante</td>
+<td>Documento e estado independentes</td>
+<td>Implementado</td>
+</tr>
+<tr>
+<td>Folha, contabilidade e pagamento</td>
+<td>Cálculo, CSV e etapas financeiras</td>
+<td>Sem ordem bancária; valores demonstrativos</td>
+</tr>
+<tr>
+<td>Preparação da produção</td>
+<td>Faturamento, código, quantidade, CSV e protocolo</td>
+<td>Preparação interna, sem leiaute homologado</td>
+</tr>
+<tr>
+<td>Painel e rastreabilidade</td>
+<td>Indicadores e vínculos entre registros</td>
+<td>Sem BI externo</td>
+</tr>
+<tr>
+<td>Proteção de dados</td>
+<td>Sessão, perfis, auditoria e backup</td>
+<td>Requer adequação para produção</td>
+</tr>
+<tr>
+<td>Capacitação e suporte</td>
+<td>Materiais e registros</td>
+<td>Equipe municipal a designar</td>
+</tr>
+<tr>
+<td>Piloto e resultados</td>
+<td>Formulário de medições e plano de piloto</td>
+<td>Execução municipal real pendente</td>
+</tr>
+<tr>
+<td>e-SUS APS, CNES, mapas e WhatsApp</td>
+<td>Dependências documentadas</td>
+<td>Integrações não conectadas</td>
+</tr>
+</tbody>
+</table></section><section class="page "><h1>19. Prepare a demonstração sem depender de improviso</h1>
+<h3>Antes de sair para a apresentação</h3>
+<p>Copie a pasta completa ou extraia o ZIP. Confirme a instalação do Python. Abra <code>iniciar.bat</code> e acesse <code>http://localhost:8000</code>. Entre como <code>admin</code> com senha <code>demo123</code>. Mantenha o terminal aberto. Confira se PDFs, anexos fictícios e prints abrem sem internet.</p>
+<p>Para ensaiar em uma base separada, execute:</p>
+<pre><code class="language-text">python server.py --port 8002 --db data/apresentacao.db
+</code></pre>
+<p>Abra <code>http://localhost:8002</code>. Se esse arquivo ainda não existir, ele será inicializado com dados fictícios na data da primeira execução. Se já existir, os registros serão preservados. Para um novo ensaio limpo, escolha outro nome de arquivo, sem apagar a base anterior.</p>
+<h3>Cuidados com data e competência</h3>
+<p>Uma base antiga mantém as datas originais. Se o mês atual não mostrar dados, selecione a competência dos registros. Para demonstrar embarque, encerramento e pagamento, use data atual ou passada; ações futuras são bloqueadas. Use horários sem conflito ou cadastre recursos fictícios dedicados ao ensaio.</p>
+<h3>Caso de demonstração</h3>
+<p>Crie “Paciente Apresentação — fictício”, com endereço e embarque fictícios. Para mostrar prova do acompanhante, preencha seu cadastro e marque a autorização correspondente. Use os arquivos da pasta <code>exemplos</code> como laudo e declarações. Não apresente CPF, endereço ou documento de uma pessoa real.</p>
+<h3>Alternativa se houver falha</h3>
+<p>Se a porta estiver ocupada, use outra porta e altere o endereço no navegador. Se o sistema não abrir, mostre as capturas e o PDF dos fluxos, explicando que são evidências de execução anterior. O GitHub é privado: não dependa de o professor ter acesso; leve o ZIP local.</p></section><section class="page "><h1>20. Roteiro de apresentação de 15 minutos</h1>
+<table>
+<thead>
+<tr>
+<th>Tempo</th>
+<th>O que mostrar</th>
+<th>O que dizer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0–2 min</td>
+<td>Contexto e objetivo</td>
+<td>“Integramos o acompanhamento assistencial, operacional e financeiro do deslocamento em saúde.”</td>
+</tr>
+<tr>
+<td>2–3 min</td>
+<td>Arquitetura e tecnologias</td>
+<td>“React apresenta as telas; Python valida as regras; SQLite preserva os registros.”</td>
+</tr>
+<tr>
+<td>3–5 min</td>
+<td>Paciente, solicitação e laudo</td>
+<td>“A solicitação reutiliza o cadastro e só é autorizada com documentação e justificativa.”</td>
+</tr>
+<tr>
+<td>5–7 min</td>
+<td>Calendário, viagem e trechos</td>
+<td>“A agenda continua entre meses e a capacidade é controlada em cada trecho, incluindo acompanhante.”</td>
+</tr>
+<tr>
+<td>7–9 min</td>
+<td>Lista e comprovação</td>
+<td>“Confirmação, embarque e atendimento são etapas diferentes; o acompanhante tem prova separada.”</td>
+</tr>
+<tr>
+<td>9–11 min</td>
+<td>Financeiro e produção</td>
+<td>“Acompanhamos etapas financeiras e preparamos dados para revisão, sem simular transmissão oficial.”</td>
+</tr>
+<tr>
+<td>11–13 min</td>
+<td>Auditoria e indicadores</td>
+<td>“Os registros têm origem consultável; o piloto poderá comparar indicadores com fonte e responsável.”</td>
+</tr>
+<tr>
+<td>13–15 min</td>
+<td>Testes, limites e conclusão</td>
+<td>“O demonstrador foi testado; implantação e resultados municipais ainda dependem de homologação e piloto.”</td>
+</tr>
+</tbody>
+</table>
+<h3>Estratégia para caber no tempo</h3>
+<p>Não cadastre tudo do zero durante os 15 minutos. Prepare o caso no ensaio, deixe algumas etapas concluídas e execute ao vivo duas ou três ações relevantes. Use os prints para mostrar o restante. Se houver tempo extra, execute o fluxo completo com a base de ensaio.</p>
+<h3>Abertura em 30 segundos</h3>
+<blockquote>
+<p>“Nosso projeto responde à necessidade de acompanhar os pacientes que precisam de atendimento fora de Macaparana. A solução reúne cadastro, autorização, calendário, transporte, comprovação e acompanhamento financeiro. Vou mostrar como esses registros se conectam e quais controles impedem inconsistências.”</p>
+</blockquote>
+<h3>Encerramento em 30 segundos</h3>
+<blockquote>
+<p>“Entregamos um demonstrador funcional, documentado e testado. Ele permite acompanhar o processo e suas evidências. O próximo passo é validar as regras com a prefeitura, preparar as integrações autorizadas e medir os resultados em um piloto real.”</p>
+</blockquote></section><section class="page "><h1>21. Perguntas prováveis — parte técnica</h1>
+<h3>Por que Python e React?</h3>
+<p>Python concentra regras e persistência em uma aplicação local simples de iniciar. React organiza componentes e atualização de estado na interface. A escolha atende ao escopo acadêmico e permite separar apresentação e validação.</p>
+<h3>Por que SQLite? É suficiente para uma prefeitura?</h3>
+<p>Foi escolhido para distribuir e executar o demonstrador sem instalar um servidor de banco separado. Sua adequação a uma operação real precisa ser avaliada conforme concorrência, volume, infraestrutura e disponibilidade. Não foi feito teste de carga que sustente uma promessa de capacidade municipal.</p>
+<h3>Isso é só um protótipo de telas?</h3>
+<p>Não. As telas enviam ações à API, as regras são executadas no Python e os registros são persistidos no SQLite. O protótipo navegável é a própria aplicação; as capturas documentam execuções.</p>
+<h3>Como vocês impedem duplicidade?</h3>
+<p>Há restrições de unicidade para data por solicitação e benefício por ocorrência/beneficiário. O cálculo preserva benefícios existentes. Isso não significa prevenção completa de todo cadastro duplicado: ainda existem evoluções possíveis nos dados de pacientes.</p>
+<h3>Se alguém alterar a requisição pelo navegador?</h3>
+<p>As ações continuam sujeitas à sessão, ao perfil e às validações do servidor. Isso foi verificado em testes HTTP e de regras. A existência desses testes não substitui uma avaliação ampla de segurança.</p>
+<h3>O que acontece ao reiniciar?</h3>
+<p>Os registros salvos permanecem no SQLite. A sessão em memória pode ser perdida, exigindo novo login. Backup e recuperação são procedimentos separados, com cópia consistente e teste de leitura.</p>
+<h3>Onde posso verificar a implementação?</h3>
+<p>Nas regras em <code>app/domain.py</code> e <code>app/extensions.py</code>, na API em <code>server.py</code>, nos componentes React e nos testes. O código está no repositório privado e no ZIP entregue.</p></section><section class="page "><h1>22. Perguntas prováveis — atendimento ao problema</h1>
+<h3>TFD e transporte sanitário são tratados da mesma maneira?</h3>
+<p>Ambos utilizam agenda e transporte, mas possuem modalidades distintas. A regra demonstrativa de benefício considera apenas TFD autorizado e comprovado.</p>
+<h3>Como o acompanhante é controlado?</h3>
+<p>Existe cadastro vinculado ao paciente, previsão na solicitação, ocupação de vaga e comprovação independente para o benefício. O modelo atual admite um acompanhante por paciente, sem cadastro independente de múltiplos vínculos históricos.</p>
+<h3>O sistema já está integrado ao SUS ou ao WhatsApp?</h3>
+<p>Não. CNES é informado manualmente. A produção é preparada internamente. O canal WhatsApp registra resposta obtida pela equipe, sem envio automático. Interfaces e permissões precisam ser disponibilizadas e autorizadas.</p>
+<h3>O sistema paga o paciente?</h3>
+<p>Não transfere dinheiro. Registra cálculo demonstrativo, aprovação, encaminhamento e informação de pagamento. Regras e valores reais precisam de homologação.</p>
+<h3>Quais resultados o piloto trouxe?</h3>
+<p>Ainda não foi realizado piloto municipal comprovado. Existem testes e medições simuladas para demonstrar a ferramenta. O plano prevê linha de base, período comparável, fonte, responsável e análise das limitações.</p>
+<h3>Já atende integralmente à proteção de dados?</h3>
+<p>Possui controles técnicos no recorte local. Não foi feita certificação ou validação jurídica completa. A implantação depende de governança, infraestrutura e decisões municipais sobre tratamento dos dados.</p>
+<h3>O que falta para produção?</h3>
+<p>Homologar regras e fluxos, preparar infraestrutura e contas individuais, validar proteção dos dados, definir suporte, obter integrações autorizadas e realizar piloto com aceite. O sistema acadêmico é uma base funcional para esse trabalho.</p>
+<h3>Houve apoio de ferramentas de IA?</h3>
+<p>Responda com transparência sobre o apoio do Codex na implementação, revisão e documentação, conforme as regras da disciplina. Demonstre que você entende as decisões, limitações e testes; não atribua a si atividades que não realizou pessoalmente.</p></section><section class="page "><h1>23. Checklist final e materiais de apoio</h1>
+<h3>Confira antes de apresentar</h3>
+<ul>
+<li>Identificação de instituição, disciplina, professor e integrantes revisada.</li>
+<li>Sistema abre no computador que será usado; login e porta testados.</li>
+<li>Caso fictício ensaiado e competência correta selecionada.</li>
+<li>PDFs, prints, laudo e declarações disponíveis localmente.</li>
+<li>Tempo de apresentação ensaiado, com duas ou três ações principais ao vivo.</li>
+<li>Diferença entre implementado, simulado e dependente da prefeitura compreendida.</li>
+<li>Repositório privado acompanhado de pacote local para entrega ao professor.</li>
+</ul>
+<h3>Materiais existentes e quando utilizar</h3>
+<table>
+<thead>
+<tr>
+<th>Arquivo</th>
+<th>Utilidade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Guia-Completo-Apresentacao.pdf</code></td>
+<td>Estudo e defesa do projeto: tecnologias, funcionalidades, requisitos e perguntas</td>
+</tr>
+<tr>
+<td><code>Documentacao-Macaparana.pdf</code></td>
+<td>Consulta acadêmica e técnica detalhada</td>
+</tr>
+<tr>
+<td><code>verificacao-escopo.pdf</code></td>
+<td>Conferência requisito por requisito</td>
+</tr>
+<tr>
+<td><code>Prototipo-de-Telas.pdf</code></td>
+<td>Telas da aplicação, inclusive responsividade</td>
+</tr>
+<tr>
+<td><code>Fluxos-Funcionando.pdf</code></td>
+<td>49 capturas históricas dos fluxos integrados</td>
+</tr>
+<tr>
+<td><code>Revisao-Fluxos.pdf</code></td>
+<td>Sete capturas dos complementos de escopo</td>
+</tr>
+<tr>
+<td><code>operacao.pdf</code></td>
+<td>Capacitação, suporte, backup e plano de piloto</td>
+</tr>
+<tr>
+<td><code>Roteiro-de-Apresentacao.pdf</code></td>
+<td>Roteiro adicional de demonstração</td>
+</tr>
+<tr>
+<td><code>resultado-testes.txt</code></td>
+<td>Evidência dos 27 testes aprovados</td>
+</tr>
+</tbody>
+</table>
+<h3>Fontes deste guia</h3>
+<p>O enunciado enviado pelo usuário; código e dependências do repositório; documentação de escopo; testes; manifestos de captura e arquivos de resultado. Não foram usados números de impacto municipal nem entrevistas inexistentes. Capturas históricas podem mostrar datas e uma navegação anterior à revisão; os vínculos e comportamentos devem ser apresentados conforme o sistema atual.</p>
+<p><strong>Mensagem principal para levar à banca:</strong> a contribuição é integrar etapas e evidências do processo municipal, com controles verificáveis e uma base funcional para validação em campo.</p>
+<p>Fim do guia de estudo e apresentação.</p></section><section class="page gallery"><h1>Evidência visual — alocação por trecho</h1><p>A ocorrência foi alocada somente no intervalo Carpina → Recife. A lista registra confirmação por telefone. Dados fictícios.</p><img src="revisao/02-alocacao-confirmacao.png" alt="Evidência visual — alocação por trecho"></section><section class="page gallery"><h1>Evidência visual — preparação da produção</h1><p>Produção preparada e encaminhada internamente com protocolo; não representa transmissão oficial.</p><img src="revisao/04-producao-encaminhada.png" alt="Evidência visual — preparação da produção"></section><section class="page gallery"><h1>Evidência visual — indicadores e piloto</h1><p>Indicadores locais e formulário de medição. Os valores de teste são artificiais e identificados como simulação.</p><img src="revisao/05-indicadores-piloto.png" alt="Evidência visual — indicadores e piloto"></section><section class="page gallery"><h1>Evidência visual — capacitação e suporte</h1><p>Registro de capacitação demonstrativa concluído para testar o fluxo. Não comprova realização de oficina municipal.</p><img src="revisao/06-capacitacao-suporte.png" alt="Evidência visual — capacitação e suporte"></section></body></html>

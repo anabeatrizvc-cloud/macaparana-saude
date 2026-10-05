@@ -41,6 +41,10 @@ Todos usam a senha demonstrativa `demo123`:
 
 ## Entrega
 
+- `docs/Guia-Completo-Apresentacao.pdf`: guia explicado das tecnologias, funcionalidades, requisitos, roteiro de 15 minutos e perguntas da banca.
+- `docs/Slides-Apresentacao.pdf`: 12 slides para projetar durante a apresentação.
+- `entrega/Material-Apresentacao-Macaparana.zip`: guia, slides e documentos de apoio reunidos; o sistema executável permanece no pacote completo abaixo.
+
 - `docs/Documentacao-Macaparana.pdf`: documentação acadêmica e técnica.
 - `docs/Prototipo-de-Telas.pdf`: telas anotadas, desktop e celular.
 - `docs/Roteiro-de-Apresentacao.pdf`: demonstração guiada.
