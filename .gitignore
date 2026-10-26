@@ -1,9 +1,50 @@
+# Dados locais, backups e pacotes de entrega
+/data/
+/entrega/
+*.db
+*.db-*
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*
+*.log
+
+# Python
 __pycache__/
-*.pyc
-data/*.db*
-data/*.log
+*.py[cod]
 .venv/
-entrega/*.zip
-.tools/
-frontend/node_modules/
-data/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Node e ferramentas locais
+node_modules/
+/.tools/
+/frontend/dist/
+.vite/
+coverage/
+
+# Configura??o privada
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+
+# Editor, sistema operacional e tempor?rios
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
+~$*
+
+# static/build e docs s?o mantidos para execu??o e consulta offline.

@@ -1,4 +1,3 @@
-"""Regras do demonstrador municipal. Sem dependências externas."""
 import base64
 import hashlib
 import json

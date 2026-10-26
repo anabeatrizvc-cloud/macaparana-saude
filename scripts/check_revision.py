@@ -1,4 +1,3 @@
-"""Evidências da revisão executadas na interface, em banco descartável."""
 import json
 import os
 import subprocess
@@ -49,7 +48,6 @@ with tempfile.TemporaryDirectory() as tmp:
             section.locator('[name=reason]').fill('Teste acadêmico de planejamento por trecho')
             submit(section)
             shot('01-rota-trechos.png')
-            # Move an unallocated occurrence to the same date through a normal schedule action.
             result=page.request.post(BASE+'/api/action',headers={'X-App':'macaparana'},data={'action':'schedule.create','data':{'request_id':4,'start_date':(date.today()+timedelta(days=1)).isoformat(),'end_date':(date.today()+timedelta(days=1)).isoformat(),'weekdays':[]}})
             assert result.status==200,result.text()
             page.reload();page.locator('#content h1').wait_for()

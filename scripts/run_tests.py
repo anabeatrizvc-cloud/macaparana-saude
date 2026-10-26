@@ -1,4 +1,3 @@
-"""Executa a suíte sem dependências e salva a evidência em UTF-8."""
 import subprocess
 import sys
 from datetime import datetime

@@ -1,4 +1,3 @@
-"""Preparação de produção, trechos e acompanhamento municipal local."""
 import re
 from app.domain import get, insert, update, require, required, number, day, now, log
 

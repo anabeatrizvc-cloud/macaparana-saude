@@ -1,4 +1,3 @@
-"""Gera guia, slides e pacote de apresentação a partir de fontes locais."""
 import html
 import json
 import zipfile

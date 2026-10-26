@@ -1,4 +1,3 @@
-"""Inspeção estrutural dos PDFs e prévias locais para revisão visual."""
 import json
 from pathlib import Path
 import pymupdf

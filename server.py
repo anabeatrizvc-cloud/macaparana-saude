@@ -1,4 +1,3 @@
-"""Servidor local para demonstração acadêmica. Execute: python server.py"""
 import argparse
 import csv
 import hmac

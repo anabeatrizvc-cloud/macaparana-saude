@@ -1,136 +1,237 @@
-# Macaparana Saúde
+# Macaparana Sa?de
 
-Demonstrador acadêmico de gestão de TFD, transporte sanitário e ajudas de custo, com **backend Python, frontend React e banco SQLite**. Entrega com sistema funcional, protótipo de telas, documentação e testes. **Use somente dados fictícios.**
+Sistema acad?mico para organizar Tratamento Fora do Domic?lio (TFD), transporte sanit?rio e ajudas de custo. A aplica??o acompanha o paciente desde a solicita??o e o agendamento at? a viagem, a comprova??o do atendimento e o registro financeiro.
 
-Repositório: [anabeatrizvc-cloud/macaparana-saude](https://github.com/anabeatrizvc-cloud/macaparana-saude) — privado; acesso depende de permissão na conta GitHub.
+O frontend usa **React**, o backend usa **Python** e os dados ficam em **SQLite**. A interface compilada est? inclu?da no reposit?rio: para executar a demonstra??o local, basta ter Python instalado.
 
-## Iniciar
-
-Requisito para apresentar: Python 3.11 ou superior (verificado com Python 3.14.4). A interface React já está compilada em `static/build`; não precisa de Node.js nem internet para executar a entrega.
-
-No Windows, abra `iniciar.bat`. Ou execute na pasta do projeto:
-
-```powershell
-python server.py
-```
-
-Abra **http://localhost:8000**. Usuário **admin**, senha **demo123**.
-
-O terminal precisa permanecer aberto. Para parar, pressione Ctrl+C. Na primeira execução, o banco é criado com dados fictícios; nas seguintes, os registros são preservados.
-
-Se a porta estiver ocupada:
-
-```powershell
-python server.py --port 8002
-```
-
-Abra então `http://localhost:8002`. O servidor escuta apenas em `127.0.0.1`; não há publicação na internet.
-
-## Perfis
-
-Todos usam a senha demonstrativa `demo123`:
-
-| Usuário | Acesso |
-| --- | --- |
-| admin | Todas as funcionalidades |
-| regulacao | Cadastros, solicitações, laudos, agenda e comprovação |
-| transporte | Frota, motoristas, viagens, alocação e execução |
-| motorista | Apenas suas viagens e dados operacionais |
-| financeiro | Consulta, cálculo, etapas financeiras e exportação |
-| auditor | Consulta, auditoria e exportação; sem alterações de negócio |
-
-## Entrega
-
-- `docs/Guia-Completo-Apresentacao.pdf`: guia explicado das tecnologias, funcionalidades, requisitos, roteiro de 15 minutos e perguntas da banca.
-- `docs/Slides-Apresentacao.pdf`: 12 slides para projetar durante a apresentação.
-- `entrega/Material-Apresentacao-Macaparana.zip`: guia, slides e documentos de apoio reunidos; o sistema executável permanece no pacote completo abaixo.
-
-- `docs/Documentacao-Macaparana.pdf`: documentação acadêmica e técnica.
-- `docs/Prototipo-de-Telas.pdf`: telas anotadas, desktop e celular.
-- `docs/Roteiro-de-Apresentacao.pdf`: demonstração guiada.
-- `docs/documentacao.html`: documentação navegável, também acessível sem servidor.
-- `docs/prototipo.html`: galeria de telas; o sistema é o protótipo interativo.
-- `docs/roteiro.html`: roteiro de apresentação.
-- `docs/fluxos.html`: galeria das etapas executadas pela interface React e verificadas na API.
-- `docs/Fluxos-Funcionando.pdf`: capturas dos fluxos integrados, estados e bloqueios.
-- `docs/fluxos/manifesto.json`: resultado das verificações e descrição de cada captura.
-- `docs/documentacao.md` e `docs/roteiro.md`: fontes editáveis.
-- `docs/modelo-dados.mmd` e `docs/fluxo.mmd`: diagramas Mermaid editáveis.
-- `app/schema.sql`: modelo relacional executável.
-- `exemplos/`: laudo e declarações fictícias para testar anexos.
-- `entrega/Macaparana-Saude-Entrega.zip`: pacote completo para enviar.
-
-Faculdade, disciplina, professor e integrantes não foram informados. Preencha a identificação em `docs/identificacao.json` e gere novamente os documentos, ou edite as fontes para personalizar a entrega.
+> Use somente dados fict?cios. Os valores e as regras financeiras s?o demonstrativos. O projeto n?o est? homologado para opera??o municipal nem integrado a sistemas oficiais.
 
 ## Funcionalidades
 
-Cadastros, autorização com laudo, recorrências entre competências, planejamento com conflitos de horário e lotação, lista do motorista, comprovações separadas, tabela mensal por datas, benefícios demonstrativos com versão da regra, fluxo até registro de pagamento, exportação CSV e auditoria.
+- Cadastro de pacientes, acompanhantes, unidades de refer?ncia, ve?culos e motoristas.
+- Solicita??es de TFD e transporte sanit?rio, com laudos e an?lise de autoriza??o.
+- Agendamento avulso ou recorrente, calend?rio e confer?ncia mensal.
+- Planejamento de viagens com verifica??o de hor?rios, habilita??o, acessibilidade e capacidade por trecho.
+- Confirma??o assistida, lista de passageiros, embarque, aus?ncia e encerramento da viagem.
+- Comprova??o separada de atendimento do paciente e do acompanhante.
+- C?lculo demonstrativo de benef?cios, aprova??o, contabilidade e registro de pagamento.
+- Prepara??o interna de produ??o e exporta??o CSV para revis?o.
+- Indicadores, medi??es do piloto, suporte e registros de capacita??o.
+- Acesso por perfil e auditoria das opera??es.
 
-**Não é uma implantação municipal pronta:** não há integração oficial, WhatsApp, mapa, ordem bancária, homologação de regras TFD, infraestrutura de produção, MFA, criptografia do banco ou piloto com pacientes reais. A documentação diferencia o que foi implementado, o que é simplificado e o que permanece como evolução.
+## Executar localmente
 
-## Banco e cópia de segurança
+### Requisitos
 
-O arquivo `data/macaparana.db` guarda registros e anexos. Faça a cópia com o servidor parado, mantenha o backup em local protegido e teste a restauração em uma instância separada:
+| Objetivo | Necess?rio |
+| --- | --- |
+| Executar o sistema e os testes Python | Python 3.11 ou superior; vers?o utilizada no projeto: 3.14.4. |
+| Alterar e compilar o frontend | Node.js 24 e npm. |
+| Automa??es de navegador e gera??o de documentos | Depend?ncias opcionais indicadas abaixo e Google Chrome. |
+
+O backend usa a biblioteca padr?o do Python e n?o exige instala??o de pacotes. Node.js s? ? necess?rio para desenvolver ou recompilar a interface.
+
+### Clonar e iniciar
 
 ```powershell
-python server.py --port 8002 --db data/copia-para-validacao.db
+git clone https://github.com/anabeatrizvc-cloud/macaparana-saude.git
+cd macaparana-saude
+py server.py
 ```
 
-Para uma demonstração nova, use outro arquivo de banco com `--db`; não é necessário apagar o banco existente. Exemplo: `python server.py --db data/nova-demonstracao.db`.
+No Windows, `py` usa o inicializador do Python. Se o ambiente disponibilizar `python` ou `python3`, use esse comando no lugar de `py`. O arquivo `iniciar.bat` tamb?m inicia o projeto, desde que `python` esteja configurado no PATH.
 
-## Testes
+Abra **[http://localhost:8000](http://localhost:8000)**. Entre com usu?rio **admin** e senha **demo123**.
+
+O servidor fica restrito a `127.0.0.1`. Mantenha o terminal aberto e pressione `Ctrl+C` para encerr?-lo. Na primeira execu??o, o banco ? criado com exemplos fict?cios; nas seguintes, os dados s?o preservados.
+
+Para usar outra porta e uma base separada para estudo:
 
 ```powershell
-python -m unittest discover -s tests -v
+py server.py --port 8002 --db data/estudo.db
 ```
 
-Testes de navegador e geração de documentação são ferramentas de desenvolvimento opcionais:
+Acesse `http://localhost:8002`. Reiniciar o servidor encerra as sess?es de login, mas n?o apaga o banco.
 
-```powershell
-python -m pip install playwright markdown pymupdf
-python scripts/e2e_flow.py
-python scripts/browser_check.py
-python scripts/capture_flows.py
-python scripts/build_docs.py
+## Perfis de demonstra??o
+
+Todos os usu?rios abaixo usam a senha `demo123`. Essas credenciais fazem parte da base fict?cia criada por `app/seed.py`.
+
+| Usu?rio | Responsabilidade principal |
+| --- | --- |
+| `admin` | Administra??o e acesso a todas as funcionalidades. |
+| `regulacao` | Pacientes, solicita??es, documentos, agenda e comprova??o. |
+| `transporte` | Frota, motoristas, viagens, trechos e aloca??o. |
+| `motorista` | Suas viagens e dados operacionais dos passageiros. |
+| `financeiro` | Benef?cios, etapas financeiras e exporta??o da folha. |
+| `faturamento` | Prepara??o, encaminhamento e exporta??o interna da produ??o. |
+| `auditor` | Consultas, auditoria, exporta??es e registro de medi??es do piloto. |
+
+As permiss?es s?o verificadas no servidor. A resposta da API tamb?m limita os dados enviados conforme o perfil.
+
+## Arquitetura e organiza??o
+
+```text
+Navegador (React)
+    ? API HTTP (server.py)
+    ? Regras e permiss?es (app/domain.py e app/extensions.py)
+    ? Banco SQLite (data/macaparana.db)
 ```
 
-Os scripts de navegador usam Google Chrome instalado. `browser_check.py` requer o servidor na porta 8000. `build_docs.py` lê os arquivos locais e valida o conteúdo exportado. O teste ponta a ponta usa banco temporário na porta 8001; as capturas dos fluxos usam outra base isolada na porta 8004. Ambos encerram suas instâncias ao terminar.
+O navegador consulta `/api/state` e envia opera??es para `/api/action`. O servidor valida a sess?o, aplica as regras e confirma a transa??o. Depois de uma altera??o, a interface consulta novamente o estado. O backend usa `http.server` e consultas SQL diretas, sem Flask, Django ou ORM.
 
-## Desenvolvimento React
+| Caminho | Responsabilidade |
+| --- | --- |
+| `server.py` | Servidor HTTP, autentica??o, sess?es, API e arquivos est?ticos. |
+| `app/domain.py` | Regras centrais, permiss?es, persist?ncia e auditoria. |
+| `app/extensions.py` | Migra??es, capacidade por trecho, produ??o, piloto e suporte. |
+| `app/schema.sql` | Estrutura inicial das tabelas e restri??es. |
+| `app/seed.py` | Inicializa??o do banco e exemplos de demonstra??o. |
+| `frontend/src/main.jsx` | Inicializa??o React, navega??o, estado e coordena??o das a??es. |
+| `frontend/src/context.jsx` | Contexto compartilhado, chamadas ? API e formata??o. |
+| `frontend/src/pages.jsx` | P?ginas principais. |
+| `frontend/src/details.jsx` | Detalhes de pacientes, solicita??es, atendimentos, viagens e auditoria. |
+| `frontend/src/forms.jsx` | Formul?rios e prepara??o dos dados enviados. |
+| `frontend/src/extensions.jsx` | Telas de trechos, produ??o, piloto e suporte. |
+| `frontend/src/ui.jsx` | Componentes visuais reutiliz?veis. |
+| `frontend/src/react.css` e `static/style.css` | Estilos da interface. |
+| `frontend/package-lock.json` | Vers?es resolvidas das depend?ncias do frontend. |
+| `static/build/` | Interface compilada, pronta para ser servida pelo Python. |
+| `tests/` | Testes de dom?nio, funcionalidades complementares e HTTP. |
+| `scripts/` | Backup, verifica??es, gera??o de documentos e empacotamento. |
+| `docs/` | Guias, diagramas, materiais de apresenta??o e evid?ncias. |
+| `exemplos/` | Laudo e declara??es fict?cias para testar anexos. |
+| `data/` | Banco, backups e arquivos locais; n?o versionada. |
 
-Frontend em React 19, compilado com Vite 8. Requer Node.js 24 LTS para desenvolvimento (verificado com 24.21.0). Instale Node no ambiente ou use `python scripts/setup_node.py` para baixar uma cópia portátil oficial em `.tools` e adicionar sua pasta ao PATH da sessão.
+O banco atual combina `schema.sql` com as migra??es de `extensions.py`. Uma solicita??o pode gerar v?rias ocorr?ncias de atendimento; cada ocorr?ncia pode ser alocada a uma viagem. Embarque, atendimento e comprova??o do acompanhante s?o registros distintos.
+
+## Desenvolver o frontend
+
+Instale as depend?ncias a partir do lockfile:
 
 ```powershell
 cd frontend
 npm ci
+```
+
+Mantenha o backend na porta 8000 e, em outro terminal dentro de `frontend`, execute:
+
+```powershell
+npm run dev
+```
+
+Acesse **http://127.0.0.1:5173/build/**. O Vite atualiza a interface ao salvar os arquivos e encaminha as chamadas `/api` ao Python.
+
+Para atualizar a vers?o servida diretamente pelo Python:
+
+```powershell
 npm run build
 ```
 
-O build atualiza `static/build`, servido pelo Python. Para desenvolvimento com recarga automática, mantenha `python server.py` em outro terminal e execute `npm run dev` na pasta `frontend`; acesse `http://127.0.0.1:5173/build/`. O proxy do Vite encaminha `/api` para a API local e ajusta a origem apenas nessa conexão de desenvolvimento. A autorização continua no backend.
+O build grava os arquivos em `static/build/`. Edite os fontes e os estilos, depois recompile; os arquivos de `static/build/assets/` s?o gerados automaticamente. Ao publicar uma mudan?a visual, inclua tamb?m o build atualizado para manter a execu??o com Python funcionando.
 
-A interface usa componentes JSX, Context e hooks de estado/efeito; não injeta a aplicação anterior com `innerHTML`. Busca, filtros, diálogos e estados de operação são gerenciados pelo React. Formulários enviam dados JSON à mesma API Python validada pelos testes.
+Se n?o houver Node instalado, `py scripts/setup_node.py`, executado na raiz, baixa uma distribui??o port?til oficial para `.tools/` e verifica seu checksum. Adicione a pasta extra?da ao PATH do terminal antes de usar `npm`.
 
-## Estrutura
+## Testes e verifica??es
 
-```text
-server.py                  Servidor HTTP local, sessão e API
-app/domain.py              Regras e permissões no servidor
-app/schema.sql             Tabelas, relações e restrições
-app/seed.py                Base fictícia e usuários de demonstração
-frontend/src/              Componentes React, contexto, formulários e páginas JSX
-frontend/package-lock.json Dependências exatas do frontend
-static/build/              Interface React compilada para execução offline
-static/style.css           Estilo visual compartilhado com a lista imprimível
-tests/                     Testes de domínio e HTTP
-scripts/                   Verificação visual e geração dos documentos
-docs/                      Documentos, diagramas, telas e evidências
-exemplos/                  Anexos fictícios
-data/                      Banco persistente local
+Na raiz do projeto:
+
+```powershell
+py -m unittest discover -s tests -v
 ```
-# Revisão do escopo — 04/10/2026
 
-Complementos: capacidade por trecho com paradas ordenadas, confirmação assistida com canal, perfil `faturamento`, preparação/encaminhamento de produção e CSV interno, indicadores de custo/consumo, medições do piloto com fonte, registros de capacitação/suporte e `python scripts/backup.py`.
+A su?te cont?m 27 testes cobrindo autoriza??o, agenda, viagens, documentos, benef?cios, permiss?es, auditoria, produ??o e backup. Os testes HTTP usam um servidor pr?prio; n?o exigem que a aplica??o principal esteja aberta.
 
-Consulte [verificação completa](docs/verificacao-escopo.md), [operação e piloto](docs/operacao.md) e [novas evidências](docs/revisao.html). A senha do novo perfil é `demo123`, como os demais perfis acadêmicos. A migração preserva o banco existente.
+Para executar a su?te e salvar a evid?ncia em `docs/resultado-testes.txt`:
 
-Integrações oficiais, leiautes homologados, implantação com dados reais e execução do piloto municipal dependem da prefeitura. O CSV de produção é preparação interna e não representa transmissão ou aceite oficial.
+```powershell
+py scripts/run_tests.py
+```
+
+### Ferramentas opcionais
+
+```powershell
+py -m pip install playwright markdown pymupdf
+```
+
+Os scripts de navegador usam Google Chrome instalado. Execute somente as ferramentas necess?rias:
+
+| Comando na raiz | Resultado ou requisito |
+| --- | --- |
+| `py scripts/browser_check.py` | Verifica telas e gera capturas; requer o sistema na porta 8000. |
+| `py scripts/e2e_flow.py` | Executa fluxo integrado com banco tempor?rio e servidor na porta 8001. |
+| `py scripts/capture_flows.py` | Gera evid?ncias dos fluxos com banco isolado na porta 8004. |
+| `py scripts/check_revision.py` | Verifica funcionalidades complementares e gera evid?ncias da revis?o. |
+| `py scripts/build_docs.py` | Gera HTML, diagramas e PDFs da documenta??o. |
+| `py scripts/build_presentation.py` | Gera guia, slides e pacote dos materiais de apresenta??o. |
+| `py scripts/revision_docs.py` | Atualiza materiais da revis?o e suas vers?es de leitura. |
+| `py scripts/inspect_pdfs.py` | Inspeciona PDFs e cria pr?vias locais. |
+
+Os documentos e relat?rios representam a execu??o em que foram gerados; n?o s?o atualizados automaticamente ao modificar o c?digo.
+
+## Banco e backup
+
+O arquivo padr?o ? `data/macaparana.db`. Ele cont?m os registros e os anexos. Para gerar uma c?pia consistente usando a API do SQLite:
+
+```powershell
+py scripts/backup.py
+```
+
+O destino padr?o fica em `data/backups/`, com data e hora no nome. Para escolher o destino:
+
+```powershell
+py scripts/backup.py --source data/macaparana.db --target data/backups/copia-estudo.db
+```
+
+O script exige um destino novo, diferente da origem, e verifica a integridade da c?pia. Para validar um backup sem alterar a base principal:
+
+```powershell
+py server.py --port 8002 --db data/backups/copia-estudo.db
+```
+
+Alterar `seed.py` n?o substitui os exemplos de um banco j? inicializado. Para uma demonstra??o nova, use outro caminho com `--db`.
+
+## Documenta??o para consulta
+
+- [Guia de estudo do c?digo](docs/Guia-Estudo-Codigo.md): pastas, arquivos, fun??es e ordem de estudo. [Vers?o Word](docs/Guia-Estudo-Codigo.docx).
+- [Documenta??o t?cnica](docs/documentacao.md): requisitos, regras e arquitetura. [PDF](docs/Documentacao-Macaparana.pdf).
+- [Manual de opera??o](docs/operacao.md): rotina de uso, backup e piloto.
+- [Verifica??o de escopo](docs/verificacao-escopo.md): funcionalidades e limites da entrega.
+- [Guia de apresenta??o](docs/Guia-Completo-Apresentacao.md) e [roteiro](docs/roteiro.md).
+- [Slides em PDF](docs/Slides-Apresentacao.pdf) e [prot?tipo de telas](docs/Prototipo-de-Telas.pdf).
+- [Modelo de dados](docs/modelo-dados.mmd) e [fluxo do processo](docs/fluxo.mmd), em Mermaid edit?vel.
+- [Evid?ncias dos fluxos](docs/fluxos/manifesto.json) e [resultados da revis?o](docs/revisao/resultado.json).
+
+As vers?es HTML em `docs/` podem ser abertas localmente ou pelo servidor. Para personalizar os materiais, confira `docs/identificacao.json` antes de ger?-los novamente.
+
+## O que entra no Git
+
+S?o versionados c?digo-fonte, configura??es do projeto, lockfile, testes, scripts, exemplos fict?cios, documenta??o e frontend compilado. O build e os materiais de consulta permitem execu??o e apresenta??o offline ap?s obter o reposit?rio.
+
+O `.gitignore` exclui banco e backups, logs, ambientes virtuais, caches, `node_modules`, ferramentas port?teis, configura??es pessoais do editor, arquivos de ambiente privados e pacotes de entrega. Arquivos `.env.example` podem ser versionados como modelos, sem valores privados.
+
+Para gerar e verificar um pacote distribu?vel localmente:
+
+```powershell
+py scripts/package_delivery.py
+py scripts/verify_package.py
+```
+
+O ZIP completo e seu checksum ficam em `entrega/`, fora do Git. A verifica??o extrai o pacote em uma pasta tempor?ria, confere a integridade e testa a inicializa??o.
+
+## Problemas comuns
+
+| Sintoma | O que conferir |
+| --- | --- |
+| `python` n?o encontrado ou abre a Microsoft Store | Use `py` no Windows ou configure o Python no PATH. |
+| Porta 8000 ocupada | Use `--port 8002` e acesse a nova porta. O proxy do Vite aponta para 8000. |
+| Altera??es React n?o aparecem no servidor Python | Execute `npm run build` dentro de `frontend` e recarregue a p?gina. |
+| Vite abre, mas a API falha | Confirme que o backend est? ativo em `127.0.0.1:8000`. |
+| Mudan?as no seed n?o aparecem | O banco j? foi inicializado; use outro arquivo com `--db`. |
+| Automa??o n?o encontra Chrome | Instale Google Chrome e as depend?ncias opcionais. |
+
+## Limites da demonstra??o
+
+N?o h? integra??o oficial com faturamento p?blico, envio por WhatsApp, mapa, transfer?ncia banc?ria ou implanta??o com pacientes reais. O CSV de produ??o ? prepara??o interna e n?o representa transmiss?o ou aceite oficial. Os registros de pagamento representam acompanhamento administrativo, n?o movimenta??o banc?ria.
+
+Uma implanta??o real exige valida??o das regras aplic?veis, revis?o de seguran?a, prote??o dos dados, infraestrutura e defini??o dos procedimentos de opera??o e suporte.

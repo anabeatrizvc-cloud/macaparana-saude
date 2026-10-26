@@ -1,4 +1,3 @@
-"""Atualiza documentação da revisão e gera anexos consultáveis/PDF."""
 from pathlib import Path
 import markdown
 from playwright.sync_api import sync_playwright
