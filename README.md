@@ -6,6 +6,16 @@ O frontend usa **React**, o backend usa **Python** e os dados ficam em **SQLite*
 
 > Use somente dados fict?cios. Os valores e as regras financeiras s?o demonstrativos. O projeto n?o est? homologado para opera??o municipal nem integrado a sistemas oficiais.
 
+## Alunos
+
+| Nome | Matrícula |
+| --- | --- |
+| Ana Beatriz Vasconcelos | 01707957 |
+| Juliana Eugênia Anacleto Barbosa | 01800345 |
+| Thayana Araujo brito da Silva | 01784035 |
+| Lucas Gabriel de Aguiar Santiago | 01814331 |
+| Mikael Lucas da Silva | 01815744 |
+
 ## Funcionalidades
 
 - Cadastro de pacientes, acompanhantes, unidades de refer?ncia, ve?culos e motoristas.
