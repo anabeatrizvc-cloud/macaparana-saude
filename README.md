@@ -99,7 +99,7 @@ O navegador consulta `/api/state` e envia opera??es para `/api/action`. O servid
 | `static/build/` | Interface compilada, pronta para ser servida pelo Python. |
 | `tests/` | Testes de dom?nio, funcionalidades complementares e HTTP. |
 | `scripts/` | Backup, verifica??es, gera??o de documentos e empacotamento. |
-| `docs/` | Guias, diagramas, materiais de apresenta??o e evid?ncias. |
+| `docs/` | Documentação Macaparana em PDF. |
 | `exemplos/` | Laudo e declara??es fict?cias para testar anexos. |
 | `data/` | Banco, backups e arquivos locais; n?o versionada. |
 
@@ -154,7 +154,7 @@ py scripts/run_tests.py
 py -m pip install playwright markdown pymupdf
 ```
 
-Os scripts de navegador usam Google Chrome instalado. Execute somente as ferramentas necess?rias:
+Os scripts de navegador usam Google Chrome instalado. Os geradores de documentos dependem de fontes e capturas locais que não acompanham o repositório; uma clonagem nova inclui apenas o PDF principal. Execute somente as ferramentas necess?rias:
 
 | Comando na raiz | Resultado ou requisito |
 | --- | --- |
@@ -191,18 +191,9 @@ py server.py --port 8002 --db data/backups/copia-estudo.db
 
 Alterar `seed.py` n?o substitui os exemplos de um banco j? inicializado. Para uma demonstra??o nova, use outro caminho com `--db`.
 
-## Documenta??o para consulta
+## Documentação
 
-- [Guia de estudo do c?digo](docs/Guia-Estudo-Codigo.md): pastas, arquivos, fun??es e ordem de estudo. [Vers?o Word](docs/Guia-Estudo-Codigo.docx).
-- [Documenta??o t?cnica](docs/documentacao.md): requisitos, regras e arquitetura. [PDF](docs/Documentacao-Macaparana.pdf).
-- [Manual de opera??o](docs/operacao.md): rotina de uso, backup e piloto.
-- [Verifica??o de escopo](docs/verificacao-escopo.md): funcionalidades e limites da entrega.
-- [Guia de apresenta??o](docs/Guia-Completo-Apresentacao.md) e [roteiro](docs/roteiro.md).
-- [Slides em PDF](docs/Slides-Apresentacao.pdf) e [prot?tipo de telas](docs/Prototipo-de-Telas.pdf).
-- [Modelo de dados](docs/modelo-dados.mmd) e [fluxo do processo](docs/fluxo.mmd), em Mermaid edit?vel.
-- [Evid?ncias dos fluxos](docs/fluxos/manifesto.json) e [resultados da revis?o](docs/revisao/resultado.json).
-
-As vers?es HTML em `docs/` podem ser abertas localmente ou pelo servidor. Para personalizar os materiais, confira `docs/identificacao.json` antes de ger?-los novamente.
+Consulte a [Documentação Macaparana (PDF)](docs/Documentacao-Macaparana.pdf) para requisitos, regras, arquitetura e limites do projeto. Apenas esse PDF é versionado em `docs/`; os demais materiais ficam locais.
 
 ## O que entra no Git
 

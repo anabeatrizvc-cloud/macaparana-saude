@@ -500,8 +500,8 @@ export function Support() {
       />
       <section className="card">
         <p>
-          <a href="/docs/operacao.html" target="_blank" rel="noreferrer">
-            Manual de operação, capacitação e piloto
+          <a href="/docs/Documentacao-Macaparana.pdf" target="_blank" rel="noreferrer">
+            Documentação Macaparana
           </a>
         </p>
         <Table

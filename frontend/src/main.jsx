@@ -85,7 +85,11 @@ function Login() {
             Explore com dados fictícios, sem integrações externas.
           </div>
           <p style={{ marginTop: 25, fontSize: 11 }}>
-            <a href="/docs/documentacao.html" target="_blank" rel="noreferrer">
+            <a
+              href="/docs/Documentacao-Macaparana.pdf"
+              target="_blank"
+              rel="noreferrer"
+            >
               Documentação do projeto <Icon name="arrow" />
             </a>
           </p>

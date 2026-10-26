@@ -1,9 +1,0 @@
-LAUDO DEMONSTRATIVO — SEM VALIDADE CLÍNICA
-
-Paciente: personagem fictício utilizado na apresentação acadêmica.
-Referência: unidade fictícia cadastrada no demonstrador.
-Especialidade: preencher conforme o cenário de teste.
-Finalidade: demonstrar o vínculo entre solicitação e documento.
-
-Este arquivo não contém avaliação médica, diagnóstico, assinatura profissional
-ou autorização válida. Uso exclusivo em testes do projeto Macaparana Saúde.

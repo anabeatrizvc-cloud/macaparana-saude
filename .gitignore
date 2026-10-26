@@ -48,3 +48,7 @@ Desktop.ini
 ~$*
 
 # static/build e docs s?o mantidos para execu??o e consulta offline.
+
+# Apenas a documentacao principal no repositorio
+/docs/*
+!/docs/Documentacao-Macaparana.pdf

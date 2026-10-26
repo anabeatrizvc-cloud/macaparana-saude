@@ -858,43 +858,22 @@ export function Help() {
         subtitle="Sistema funcional, protótipo navegável e documentação do projeto."
       />
       <div className="help-grid">
-        {[
-          [
-            "file",
-            "Documentação",
-            "Problema, requisitos, arquitetura, dados, casos de uso, testes e limitações.",
-            "documentacao",
-            "Abrir documento",
-          ],
-          [
-            "eye",
-            "Protótipo de telas",
-            "Visão das telas e seus fluxos, com capturas da aplicação e anotações.",
-            "prototipo",
-            "Ver protótipo",
-          ],
-          [
-            "clipboard",
-            "Roteiro de apresentação",
-            "Uma sequência prática para demonstrar o atendimento de ponta a ponta.",
-            "roteiro",
-            "Abrir roteiro",
-          ],
-        ].map(([icon, title, text, slug, link]) => (
-          <section key={slug} className="card help-card">
-            <Icon name={icon} />
-            <h2>{title}</h2>
-            <p>{text}</p>
-            <a
-              className="btn"
-              href={`/docs/${slug}.html`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              {link} <Icon name="arrow" />
-            </a>
-          </section>
-        ))}
+        <section className="card help-card">
+          <Icon name="file" />
+          <h2>Documentação Macaparana</h2>
+          <p>
+            Problema, requisitos, arquitetura, dados, casos de uso, testes e
+            limitações.
+          </p>
+          <a
+            className="btn"
+            href="/docs/Documentacao-Macaparana.pdf"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Abrir documento <Icon name="arrow" />
+          </a>
+        </section>
       </div>
       <section className="card">
         <div className="card-head">
@@ -945,31 +924,7 @@ export function Help() {
   );
 }
 function Delivery() {
-  return (
-    <>
-      <Help />
-      <section className="card">
-        <div className="card-head"><div><h2>Revisão do escopo</h2><p>Requisitos conferidos, complementos implementados e dependências municipais.</p></div></div>
-        <p><a href="/docs/verificacao-escopo.html" target="_blank" rel="noreferrer">Verificação requisito por requisito</a> · <a href="/docs/operacao.html" target="_blank" rel="noreferrer">Capacitação, suporte e piloto</a> · <a href="/docs/revisao.html" target="_blank" rel="noreferrer">Novas evidências</a></p>
-      </section>
-      <section className="card">
-        <div className="card-head">
-          <div>
-            <h2>Fluxos funcionando e integrados</h2>
-            <p>Capturas das etapas executadas, bloqueios e perfis de acesso</p>
-          </div>
-          <a
-            className="btn primary"
-            href="/docs/fluxos.html"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Ver evidências <Icon name="arrow" />
-          </a>
-        </div>
-      </section>
-    </>
-  );
+  return <Help />;
 }
 export const pages = {
   segments: Segments,

@@ -1,2 +1,0 @@
-﻿Preparacao_ID;Ocorrencia_ID;Solicitacao_ID;Paciente;CNS;CNES_referencia;Modalidade;Especialidade;Data;Viagem_ID;Atendimento_comprovado;Permanencia;Acompanhante_comprovado;Procedimento_informado;Quantidade;Destino_revisao;Situacao;Protocolo_interno;Observacoes
-1;7;1;Maria de Lourdes · fictício;;0000001;TFD;Oncologia;2026-10-03;4;1;Atendimento ambulatorial no mesmo dia · exemplo;1;0000000001;1;Faturamento municipal — revisão demonstrativa;Encaminhada para revisão;REVISAO-DEMO-001;Código fictício. Validar CNS, catálogo, elegibilidade e leiaute.
